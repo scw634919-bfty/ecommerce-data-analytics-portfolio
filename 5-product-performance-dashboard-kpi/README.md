@@ -1,5 +1,7 @@
 # Product Performance Dashboard (KPI)
 
+[![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/5-product-performance-dashboard-kpi/notebook/product_performance_dashboard_kpi.html)
+
 ## Project Overview
 
 This project analyzes e-commerce transaction data to build a **Product
