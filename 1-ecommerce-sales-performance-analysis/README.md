@@ -1,142 +1,121 @@
-# E-Commerce Sales Performance Analysis
+# Ecommerce Sales Analytics Dashboard
 
 ## Project Overview
 
-This project analyzes an online retail transaction dataset to understand overall sales performance, identify top-performing products, and compare revenue by country. The goal is to turn raw order-level data into simple business insights that can support product, inventory, and marketing decisions.
+This project analyzes ecommerce transaction data to evaluate sales performance, customer activity, product performance, and geographic sales trends.
+
+Using Python for exploratory data analysis and Tableau for dashboard development, the project transforms raw transaction-level data into business insights that support product, inventory, and sales decision-making.
+
+---
 
 ## Business Questions
 
-- How does monthly sales performance change over time?
-- Which products generate the highest revenue?
-- Which countries contribute the most to total sales?
-- What business actions can be taken based on product and market performance?
+* How did sales performance change over time?
+* Which products generated the highest revenue?
+* Which countries contributed the most sales?
+* What customer and order patterns can be identified?
+* What KPIs summarize ecommerce business performance?
 
-## Dataset
+---
 
-The analysis uses an online retail CSV dataset containing transaction-level sales records.
+## Dashboard Preview
 
-Key columns used in this analysis:
+![Dashboard Preview](images/dashboard_preview.png)
 
-| Column | Description |
-|---|---|
-| `InvoiceDate` | Date and time of each transaction |
-| `Description` | Product name or product description |
-| `Quantity` | Number of units purchased |
-| `UnitPrice` | Price per unit |
-| `CustomerID` | Unique customer identifier |
-| `Country` | Country where the transaction occurred |
+---
 
-## Tools Used
+## Interactive Dashboard
 
-- Python
-- Pandas
-- Matplotlib
-- Jupyter Notebook
+View the Tableau dashboard here:
 
-## Analysis Process
+**Tableau Public:** [Add Tableau Link Here]
 
-### 1. Data Cleaning
+---
 
-The raw dataset was cleaned before analysis to improve accuracy.
+## Key Metrics
 
-Steps included:
+| Metric                    |  Value |
+| ------------------------- | -----: |
+| Total Revenue             |  $8.9M |
+| Total Orders              | 18,532 |
+| Total Customers           |  4,338 |
+| Average Order Value (AOV) | $480.9 |
 
-- Removed rows with missing `CustomerID` or `Description`
-- Removed transactions with `Quantity <= 0`
-- Removed transactions with `UnitPrice <= 0`
-- Converted `InvoiceDate` into a datetime format
-
-These steps help remove incomplete records, returns, cancellations, and invalid price entries.
-
-### 2. Feature Engineering
-
-New columns were created for analysis:
-
-| New Column | Purpose |
-|---|---|
-| `Sales` | Calculates revenue using `Quantity * UnitPrice` |
-| `YearMonth` | Extracts monthly period from `InvoiceDate` for trend analysis |
-
-### 3. Monthly Sales Trend
-
-Sales were grouped by month to understand revenue changes over time.
-
-This helps identify:
-
-- Seasonal sales patterns
-- High-performing months
-- Potential demand peaks
-- Months that may need further investigation
-
-### 4. Top Product Analysis
-
-Products were grouped by `Description`, and total sales were calculated for each product.
-
-Top revenue-generating products included:
-
-| Product | Sales |
-|---|---:|
-| PAPER CRAFT , LITTLE BIRDIE | 168,469.60 |
-| REGENCY CAKESTAND 3 TIER | 142,592.95 |
-| WHITE HANGING HEART T-LIGHT HOLDER | 100,448.15 |
-| JUMBO BAG RED RETROSPOT | 85,220.78 |
-| MEDIUM CERAMIC TOP STORAGE JAR | 81,416.73 |
-
-### 5. Country Sales Analysis
-
-Sales were grouped by country to identify the strongest markets.
-
-Top countries by sales included:
-
-| Country | Sales |
-|---|---:|
-| United Kingdom | 7,308,391.55 |
-| Netherlands | 285,446.34 |
-| EIRE | 265,545.90 |
-| Germany | 228,867.14 |
-| France | 209,024.05 |
+---
 
 ## Key Insights
 
-- The United Kingdom is the dominant revenue market, contributing significantly more sales than other countries.
-- A small group of products drives a large amount of revenue, suggesting that best-selling products should be prioritized for inventory planning.
-- Monthly sales trend analysis can help identify seasonal demand patterns and support better forecasting.
-- High-performing international markets such as the Netherlands, EIRE, Germany, and France may be worth further marketing or distribution analysis.
+* Sales showed stronger performance during the later months of the year, indicating potential seasonality and demand peaks.
+* A small number of products generated disproportionately high revenue, suggesting that inventory prioritization for top-performing SKUs may improve performance.
+* The United Kingdom contributed the majority of total sales, while countries such as the Netherlands, EIRE, Germany, and France represented important secondary markets.
+* Dashboard KPIs provide a high-level executive summary of ecommerce business performance.
 
-## Business Recommendations
+---
 
-- Prioritize inventory for top-selling products to reduce stockout risk.
-- Monitor monthly sales trends to prepare for seasonal demand changes.
-- Investigate whether high-performing products share common characteristics such as category, price range, or gifting appeal.
-- Explore growth opportunities in strong non-UK markets.
-- Build a dashboard version of this analysis for easier business reporting.
+## Technical Approach
+
+### Data Preparation
+
+* Removed missing customer and product records
+* Filtered invalid transactions (`Quantity <= 0`, `UnitPrice <= 0`)
+* Converted invoice dates into datetime format
+
+### Feature Engineering
+
+* Created `Sales` column (`Quantity × UnitPrice`)
+* Generated `YearMonth` for time-series trend analysis
+
+### Analysis
+
+* Monthly sales trend analysis
+* Product performance analysis
+* Country-level sales comparison
+* KPI generation for business reporting
+* Tableau dashboard development
+
+---
+
+## Tech Stack
+
+* Python
+* Pandas
+* Matplotlib
+* Tableau Public
+* Jupyter Notebook
+
+---
 
 ## Project Files
 
 ```text
-├── ecommerce_sales_performance_analysis.ipynb   # Main analysis notebook
-├── online_retail.csv                            # Raw dataset
-└── README.md                                    # Project documentation
+├── ecommerce_sales_performance_analysis.ipynb
+├── README.md
+├── images/
+│   └── dashboard_preview.png
+└── data/
 ```
+
+---
 
 ## Skills Demonstrated
 
-- Data cleaning
-- Feature engineering
-- Exploratory data analysis
-- Sales performance analysis
-- Product performance analysis
-- Geographic sales analysis
-- Data visualization
-- Business insight generation
+* Data Cleaning
+* Feature Engineering
+* Exploratory Data Analysis (EDA)
+* Ecommerce Sales Analysis
+* Product Performance Analysis
+* Geographic Sales Analysis
+* KPI Reporting
+* Data Visualization
+* Tableau Dashboard Development
+* Business Insight Generation
 
-## Next Steps
+---
 
-Future improvements could include:
+## Future Improvements
 
-- Creating KPI cards for total revenue, total orders, and average order value
-- Building a Tableau or Power BI dashboard
-- Adding customer segmentation analysis
-- Comparing product performance by season
-- Forecasting future monthly sales
-- Analyzing repeat customers and purchase frequency
+* Add customer segmentation (RFM) analysis
+* Build sales forecasting models
+* Add interactive dashboard filters
+* Compare product performance across customer segments
+* Analyze repeat purchase behavior
