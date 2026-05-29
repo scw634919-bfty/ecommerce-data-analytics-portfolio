@@ -1,5 +1,7 @@
 # Demand Forecasting Analysis
 
+[![Open in nbviewer](https://img.shields.io/badge/Open%20in-nbviewer-orange?logo=jupyter)](https://nbviewer.org/github/scw634919-bfty/ecommerce-data-analytics-portfolio/blob/main/4-demand-forecasting/notebook/demand_forecasting.ipynb)
+
 ## Project Overview
 This project analyzes historical online retail sales data to forecast future monthly demand. The goal is to support better inventory planning, purchasing decisions, and operational forecasting by identifying monthly sales trends and predicting next-month sales.
 

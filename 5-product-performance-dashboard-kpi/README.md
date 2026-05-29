@@ -1,5 +1,7 @@
 # Product Performance Dashboard (KPI)
 
+[![Open in nbviewer](https://img.shields.io/badge/Open%20in-nbviewer-orange?logo=jupyter)](https://nbviewer.org/github/scw634919-bfty/ecommerce-data-analytics-portfolio/blob/main/5-product-performance-dashboard-kpi/notebook/product_performance_dashboard_kpi.ipynb)
+
 ## Project Overview
 
 This project analyzes e-commerce transaction data to build a **Product

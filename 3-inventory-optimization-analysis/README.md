@@ -1,5 +1,7 @@
 # E-commerce Inventory Optimization & AI Decision Analysis
 
+[![Open in nbviewer](https://img.shields.io/badge/Open%20in-nbviewer-orange?logo=jupyter)](https://nbviewer.org/github/scw634919-bfty/ecommerce-data-analytics-portfolio/blob/main/3-inventory-optimization-analysis/notebook/inventory_optimization_analysis.ipynb)
+
 ## Project Overview
 
 Efficient inventory management is critical in e-commerce because poor stock planning can lead to stockouts, overstock, and revenue loss.
