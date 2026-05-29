@@ -28,7 +28,7 @@ Using Python for exploratory data analysis and Tableau for dashboard development
 
 View the Tableau dashboard here:
 
-**Tableau Public:** [[Add Tableau Link Here](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_17799845497770/E-commerceSalesPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)]
+**Tableau Public:** [[View Interactive Tableau Dashboard](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_17799845497770/E-commerceSalesPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)]
 
 ---
 
