@@ -1,5 +1,7 @@
 # Clickstream Analysis & Conversion Insights
 
+[![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/6-clickstream-analysis-conversion-insights/notebook/clickstream_analysis_conversion_insights.html)
+
 ## Project Overview
 
 This project analyzes customer clickstream behavior from an online clothing store to understand browsing patterns, product engagement, and potential conversion drivers.

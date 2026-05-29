@@ -1,5 +1,7 @@
 # Customer Segmentation Using RFM Analysis
 
+[![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/2-customer-segmentation-rfm/notebook/customer_segmentation_rfm.html)
+
 ## Project Overview
 
 This project analyzes customer purchasing behavior using **RFM analysis**: Recency, Frequency, and Monetary value.
