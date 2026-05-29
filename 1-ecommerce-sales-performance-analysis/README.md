@@ -1,5 +1,7 @@
 # Ecommerce Sales Analytics Dashboard
 
+[![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/1-ecommerce-sales-performance-analysis/notebook/ecommerce_sales_performance_analysis.html)
+
 ## Project Overview
 
 This project analyzes ecommerce transaction data to evaluate sales performance, customer activity, product performance, and geographic sales trends.
