@@ -112,8 +112,8 @@ Business actions include:
 ## Project Structure
 
 ```text
-project-folder/
-
+3-inventory-optimization-analysis/
+│
 ├── data/
 │   └── Online Retail.xlsx
 │
@@ -121,11 +121,37 @@ project-folder/
 │   └── inventory_optimization_analysis.ipynb
 │
 ├── outputs/
-│   ├── charts/
-│   └── tables/
+│   ├── monthly_sales.csv
+│   ├── category_performance.csv
+│   ├── slow_moving_skus.csv
+│   └── inventory_reorder_recommendations.csv
 │
 └── README.md
 ```
+
+---
+
+## Output Files
+
+| File | Description |
+|------|-------------|
+| `outputs/monthly_sales.csv` | Monthly revenue and units sold trend |
+| `outputs/category_performance.csv` | Revenue and units by product category (excl. other) |
+| `outputs/slow_moving_skus.csv` | SKUs with sell-through rate below 30% |
+| `outputs/inventory_reorder_recommendations.csv` | Full reorder recommendation table with priority actions |
+
+---
+
+## Tableau Dashboard
+
+> 🔗 *Tableau Public link — coming soon*
+
+**Dashboard Views:**
+- Monthly revenue trend (line chart)
+- Category revenue breakdown (bar chart)
+- Inventory health: stockout risk vs overstock (highlight table)
+- Top slow-moving SKUs (table)
+- Reorder recommendation summary
 
 ---
 
@@ -136,13 +162,13 @@ project-folder/
 - NumPy
 - Matplotlib
 - Jupyter Notebook
+- Tableau Public
 
 ---
 
 ## Future Improvements
 
-- Add real inventory data
-- Implement safety stock calculation
-- Build reorder point recommendation model
-- Develop ML-based inventory forecasting
-- Deploy interactive dashboard (Tableau / Power BI)
+- Add real inventory data from WMS/ERP
+- Implement safety stock calculation with demand variability
+- Build ML-based inventory forecasting
+- Expand category coverage with more granular product tagging

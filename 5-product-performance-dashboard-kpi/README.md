@@ -49,12 +49,20 @@ sold - Unit price - Customer IDs - Order timestamps
 
 ## Project Structure
 
-``` text
-Product Performance Dashboard (KPI)
-│── product_performance_dashboard_kpi.ipynb
-│── monthly_kpi.csv
-│── category_kpi.csv
-│── README.md
+```text
+5-product-performance-dashboard-kpi/
+│
+├── data/
+│   └── Online Retail.xlsx
+│
+├── notebook/
+│   └── product_performance_dashboard_kpi.ipynb
+│
+├── outputs/
+│   ├── monthly_kpi.csv
+│   └── category_kpi.csv
+│
+└── README.md
 ```
 
 ------------------------------------------------------------------------
@@ -154,13 +162,22 @@ transformed into business insights by:
 
 ## Output Files
 
-The project generates:
+| File | Description |
+|------|-------------|
+| `outputs/monthly_kpi.csv` | Monthly revenue, orders, customers, units sold, and AOV (13 months) |
+| `outputs/category_kpi.csv` | Revenue, orders, and units sold by product category |
 
--   `monthly_kpi.csv`
--   `category_kpi.csv`
+---
 
-These files can be directly connected to Tableau or Power BI for
-dashboard creation.
+## Tableau Dashboard
+
+> 🔗 *Tableau Public link — coming soon*
+
+**Dashboard Views:**
+- Monthly revenue trend (line chart)
+- Average Order Value (AOV) over time
+- Category revenue breakdown (bar chart)
+- Monthly customer count trend
 
 ------------------------------------------------------------------------
 

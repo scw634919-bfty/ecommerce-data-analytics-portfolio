@@ -1,0 +1,4 @@
+Segment,customer_count,avg_recency,avg_frequency,avg_monetary,total_revenue
+At Risk,2150,166.33,2.13,840.97,1808079.53
+Regular,1311,24.48,2.57,914.4,1198773.21
+VIP,877,13.37,12.07,6732.67,5904555.16

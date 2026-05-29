@@ -24,9 +24,9 @@ Key fields used in this project include:
 - Python
 - Pandas
 - Matplotlib
-- Statsmodels
-- ARIMA
+- Statsmodels (ARIMA)
 - Jupyter Notebook
+- Tableau Public
 
 ## Analysis Process
 
@@ -84,6 +84,47 @@ The ARIMA model produced a higher next-month forecast than the moving average mo
 
 ## Conclusion
 This project demonstrates a practical demand forecasting workflow using historical online retail sales data. By cleaning transaction data, aggregating monthly sales, and applying Moving Average and ARIMA forecasting models, the analysis provides a foundation for data-driven inventory and demand planning.
+
+## Project Structure
+
+```text
+4-demand-forecasting/
+│
+├── data/
+│   └── Online Retail.xlsx
+│
+├── notebook/
+│   └── demand_forecasting.ipynb
+│
+├── outputs/
+│   ├── monthly_sales.csv
+│   └── forecast_comparison.csv
+│
+└── README.md
+```
+
+---
+
+## Output Files
+
+| File | Description |
+|------|-------------|
+| `outputs/monthly_sales.csv` | Monthly sales with 3-month moving average (13 months) |
+| `outputs/forecast_comparison.csv` | Next-month forecast: MA ($1.24M) vs ARIMA ($1.46M) |
+
+---
+
+## Tableau Dashboard
+
+> 🔗 *Tableau Public link — coming soon*
+
+**Dashboard Views:**
+- Historical monthly sales trend (line chart)
+- 3-month moving average overlay
+- MA vs ARIMA forecast comparison (bar chart)
+- Forecast summary KPI cards
+
+---
 
 ## Future Improvements
 - Forecast demand by product category or SKU
