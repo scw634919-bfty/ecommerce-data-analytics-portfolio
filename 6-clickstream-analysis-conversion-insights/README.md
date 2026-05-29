@@ -48,6 +48,7 @@ This project uses Python and common data analysis / machine learning libraries:
 - pandas
 - matplotlib
 - scikit-learn
+- Tableau Public
 
 Main techniques used:
 
@@ -232,18 +233,60 @@ Examples of better target variables:
 
 ---
 
+## Project Structure
+
+```text
+6-clickstream-analysis-conversion-insights/
+│
+├── data/
+│   └── e-shop clothing 2008.csv
+│
+├── notebook/
+│   └── clickstream_analysis_conversion_insights.ipynb
+│
+├── outputs/
+│   ├── price_by_color.csv
+│   ├── category_traffic.csv
+│   ├── country_sessions.csv
+│   └── price_segment_by_category.csv
+│
+└── README.md
+```
+
+---
+
+## Output Files
+
+| File | Description |
+|------|-------------|
+| `outputs/price_by_color.csv` | Average price and session count per color code |
+| `outputs/category_traffic.csv` | Session count, avg price, and premium rate by product category |
+| `outputs/country_sessions.csv` | Session volume and pricing behavior by country (47 countries) |
+| `outputs/price_segment_by_category.csv` | Standard vs Premium session split by category |
+
+---
+
+## Tableau Dashboard
+
+> 🔗 *Tableau Public link — coming soon*
+
+**Dashboard Views:**
+- Average price by color (bar chart)
+- Session volume by country (map)
+- Category traffic: Standard vs Premium segments (stacked bar)
+- High-price rate by product category (highlight table)
+
+---
+
 ## Future Improvements
 
 To make this project more complete, future improvements could include:
 
-- Build a true conversion funnel
-- Analyze session-level behavior
-- Calculate conversion rate by product category
-- Calculate conversion rate by country
-- Analyze price sensitivity
-- Add feature importance analysis
+- Build a true conversion funnel with purchase completion as target
+- Analyze session-level behavior and drop-off points
+- Calculate conversion rate by product category and country
+- Add feature importance analysis from the Random Forest model
 - Compare multiple machine learning models
-- Create final business recommendations based on conversion performance
 
 ---
 

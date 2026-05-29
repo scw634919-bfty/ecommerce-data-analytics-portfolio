@@ -206,18 +206,60 @@ Based on the RFM segmentation, the business can take the following actions:
 - Python
 - Pandas
 - Jupyter Notebook
+- Tableau Public
 
 ---
 
 ## Project Structure
 
 ```text
-customer-segmentation-rfm/
+2-customer-segmentation-rfm/
 │
-├── customer_segmentation_rfm.ipynb
-├── online_retail.csv
+├── data/
+│   └── online_retail.csv
+│
+├── notebook/
+│   └── customer_segmentation_rfm.ipynb
+│
+├── outputs/
+│   ├── rfm_segments.csv
+│   ├── segment_summary.csv
+│   └── rfm_details.csv
+│
 └── README.md
 ```
+
+---
+
+## Output Files
+
+| File | Description |
+|------|-------------|
+| `outputs/rfm_segments.csv` | Full RFM table with scores and segment labels (4,338 customers) |
+| `outputs/segment_summary.csv` | Segment-level aggregates: count, avg RFM metrics, total revenue |
+| `outputs/rfm_details.csv` | Detailed RFM metrics per customer for Tableau scatter plots |
+
+---
+
+## Tableau Dashboard
+
+> 🔗 *Tableau Public link — coming soon*
+
+**Dashboard Views:**
+- Segment distribution (customer count by VIP / Regular / At Risk)
+- Revenue contribution by segment
+- RFM scatter plot (Recency vs Monetary, colored by segment)
+- Average Recency / Frequency / Monetary per segment
+
+---
+
+## Key Findings
+
+| Segment | Customers | Avg Monetary | Total Revenue |
+|---------|-----------|--------------|---------------|
+| VIP | 877 | $6,732.67 | $5,904,555 |
+| Regular | 1,311 | $914.40 | $1,198,773 |
+| At Risk | 2,150 | $840.97 | $1,808,080 |
 
 ---
 
@@ -225,11 +267,9 @@ customer-segmentation-rfm/
 
 This project can be improved by adding:
 
-- Data visualizations for customer segment distribution
-- Revenue contribution by segment
 - Customer lifetime value (CLV) analysis
 - K-means clustering for advanced customer segmentation
-- Tableau or Power BI dashboard for business reporting
+- Cohort analysis for retention tracking
 
 ---
 
