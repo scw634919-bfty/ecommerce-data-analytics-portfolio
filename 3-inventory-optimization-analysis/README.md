@@ -13,12 +13,6 @@ Additionally, the project simulates an **AI-assisted inventory decision system**
 
 ---
 
-## Dashboard Preview
-
-[![Inventory Optimization Dashboard](images/inventory_dashboard.png)](https://public.tableau.com/views/Inventory_Optimization_Dashboard/InventoryOptimizationDashboard)
-
----
-
 ## Business Problem
 
 This project aims to answer the following business questions:
@@ -27,6 +21,12 @@ This project aims to answer the following business questions:
 - Which products are at risk of stockout?
 - Which SKUs are overstocked or slow-moving?
 - What actions should be taken to improve inventory efficiency?
+
+---
+
+## Dashboard Preview
+
+[![Inventory Optimization Dashboard](images/inventory_dashboard.png)](https://public.tableau.com/views/Inventory_Optimization_Dashboard/InventoryOptimizationDashboard)
 
 ---
 
