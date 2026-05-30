@@ -2,6 +2,18 @@
 
 [![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/2-customer-segmentation-rfm/notebook/customer_segmentation_rfm.html) [![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-orange?logo=tableau)](https://public.tableau.com/views/Customer_Segmentation_RFM_Dashboard/CustomerSegmentationDashboard)
 
+## Dashboard Preview
+
+![Dashboard Preview](images/rfm_dashboard.png)
+
+---
+
+## Interactive Dashboard
+
+**Tableau Public:** [View Interactive Tableau Dashboard](https://public.tableau.com/views/Customer_Segmentation_RFM_Dashboard/CustomerSegmentationDashboard)
+
+---
+
 ## Project Overview
 
 This project analyzes customer purchasing behavior using **RFM analysis**: Recency, Frequency, and Monetary value.
