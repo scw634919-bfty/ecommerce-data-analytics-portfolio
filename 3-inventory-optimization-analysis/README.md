@@ -1,6 +1,7 @@
 # E-commerce Inventory Optimization & AI Decision Analysis
 
 [![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/3-inventory-optimization-analysis/notebook/inventory_optimization_analysis.html)
+[![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/Inventory_Optimization_Dashboard/InventoryOptimizationDashboard)
 
 ## Project Overview
 
@@ -9,6 +10,12 @@ Efficient inventory management is critical in e-commerce because poor stock plan
 This project analyzes transaction-level retail sales data to evaluate product performance, inventory health, and category-level revenue trends.
 
 Additionally, the project simulates an **AI-assisted inventory decision system** that recommends inventory actions based on stock conditions.
+
+---
+
+## Dashboard Preview
+
+[![Inventory Optimization Dashboard](images/inventory_dashboard.png)](https://public.tableau.com/views/Inventory_Optimization_Dashboard/InventoryOptimizationDashboard)
 
 ---
 
@@ -146,14 +153,13 @@ Business actions include:
 
 ## Tableau Dashboard
 
-> 🔗 *Tableau Public link — coming soon*
+🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/Inventory_Optimization_Dashboard/InventoryOptimizationDashboard)
 
 **Dashboard Views:**
 - Monthly revenue trend (line chart)
 - Category revenue breakdown (bar chart)
-- Inventory health: stockout risk vs overstock (highlight table)
-- Top slow-moving SKUs (table)
-- Reorder recommendation summary
+- Inventory action summary (reorder / healthy / promotion)
+- Top 15 slow-moving SKUs by sell-through rate
 
 ---
 
