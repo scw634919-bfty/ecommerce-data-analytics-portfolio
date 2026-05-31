@@ -1,6 +1,7 @@
 # Product Performance Dashboard (KPI)
 
 [![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/5-product-performance-dashboard-kpi/notebook/product_performance_dashboard_kpi.html)
+[![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/ProductPerformanceKPIDashboard/ProductPerformanceKPIDashboard)
 
 ## Project Overview
 
@@ -27,6 +28,12 @@ raw sales records alone do not clearly reveal:
 
 This project transforms raw retail transaction data into actionable KPI
 metrics for business decision-making.
+
+------------------------------------------------------------------------
+
+## Dashboard Preview
+
+[![Product Performance KPI Dashboard](images/kpi_dashboard.png)](https://public.tableau.com/views/ProductPerformanceKPIDashboard/ProductPerformanceKPIDashboard)
 
 ------------------------------------------------------------------------
 
@@ -62,7 +69,11 @@ sold - Unit price - Customer IDs - Order timestamps
 │
 ├── outputs/
 │   ├── monthly_kpi.csv
-│   └── category_kpi.csv
+│   ├── category_kpi.csv
+│   └── category_performance.csv
+│
+├── images/
+│   └── kpi_dashboard.png
 │
 └── README.md
 ```
@@ -168,18 +179,18 @@ transformed into business insights by:
 |------|-------------|
 | `outputs/monthly_kpi.csv` | Monthly revenue, orders, customers, units sold, and AOV (13 months) |
 | `outputs/category_kpi.csv` | Revenue, orders, and units sold by product category |
+| `outputs/category_performance.csv` | Category revenue, units sold, SKU count, and revenue % (used in dashboard) |
 
 ---
 
 ## Tableau Dashboard
 
-> 🔗 *Tableau Public link — coming soon*
+🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/ProductPerformanceKPIDashboard/ProductPerformanceKPIDashboard)
 
 **Dashboard Views:**
+- KPI summary cards (Total Revenue, Total Orders, Total Customers, Average Order Value)
 - Monthly revenue trend (line chart)
-- Average Order Value (AOV) over time
 - Category revenue breakdown (bar chart)
-- Monthly customer count trend
 
 ------------------------------------------------------------------------
 
