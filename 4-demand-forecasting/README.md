@@ -1,6 +1,7 @@
 # Demand Forecasting Analysis
 
 [![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/4-demand-forecasting/notebook/demand_forecasting.html)
+[![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/Demand_Forecasting_Dashboard/DemandForecastingAnalysis)
 
 ## Project Overview
 This project analyzes historical online retail sales data to forecast future monthly demand. The goal is to support better inventory planning, purchasing decisions, and operational forecasting by identifying monthly sales trends and predicting next-month sales.
@@ -11,6 +12,10 @@ Retail businesses often need to estimate future demand in order to avoid both st
 This project answers the question:
 
 > Based on historical monthly sales, what is the expected sales demand for the next month?
+
+## Dashboard Preview
+
+[![Demand Forecasting Dashboard](images/forecasting_dashboard.png)](https://public.tableau.com/views/Demand_Forecasting_Dashboard/DemandForecastingAnalysis)
 
 ## Dataset
 The analysis uses an online retail transaction dataset containing order-level sales information.
@@ -118,13 +123,11 @@ This project demonstrates a practical demand forecasting workflow using historic
 
 ## Tableau Dashboard
 
-> 🔗 *Tableau Public link — coming soon*
+🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/Demand_Forecasting_Dashboard/DemandForecastingAnalysis)
 
 **Dashboard Views:**
-- Historical monthly sales trend (line chart)
-- 3-month moving average overlay
-- MA vs ARIMA forecast comparison (bar chart)
-- Forecast summary KPI cards
+- Actual sales vs 3-month moving average (line chart)
+- MA vs ARIMA next-month forecast comparison (bar chart)
 
 ---
 
