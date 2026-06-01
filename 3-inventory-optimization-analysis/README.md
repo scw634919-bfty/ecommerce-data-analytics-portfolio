@@ -64,6 +64,7 @@ Built a keyword-based categorization system to group products into:
 - Kitchen
 - Bags
 - Gift / Decorative
+- Stationery
 - Seasonal
 - Sets
 - Other
@@ -98,16 +99,16 @@ Built a rule-based recommendation engine to simulate AI-assisted inventory decis
 reorder_point = weekly_demand × (lead_time + safety_stock)
                 where  lead_time = 4 weeks,  safety_stock = 2 weeks
 
-IF   stockout risk (ending inventory below reorder point)  → Reorder Immediately
-ELIF overstock OR sell-through rate < 30%                   → Run Promotion / Bundle
-ELSE                                                        → Maintain Inventory
+IF   stockout risk (ending inventory below reorder point)  → Reorder immediately
+ELIF overstock OR sell-through rate < 30%                   → Consider promotion or bundle
+ELSE                                                        → Healthy inventory
 ```
 
 | Inventory Condition | Recommendation | SKUs |
 |--------------------|----------------|-----:|
-| Stockout Risk | Reorder Immediately | 1,877 |
-| Overstock / Slow-moving | Run Promotion / Bundle | 926 |
-| Healthy Inventory | Maintain Inventory | 1,119 |
+| Stockout Risk | Reorder immediately | 1,877 |
+| Overstock / Slow-moving | Consider promotion or bundle | 926 |
+| Healthy Inventory | Healthy inventory | 1,119 |
 | **Total analyzed** | | **3,922** |
 
 By encoding these rules, ~3,900 SKUs are triaged into actionable groups without manual review — demonstrating how analytics can be operationalized into a repeatable decision system rather than a one-time report.

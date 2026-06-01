@@ -23,7 +23,7 @@ Using Python for exploratory data analysis and Tableau for dashboard development
 
 ## Dashboard Preview
 
-![Dashboard Preview](images/ecommerce_dashboard.png)
+[![Ecommerce Sales Performance Dashboard](images/ecommerce_dashboard.png)](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_17799845497770/E-commerceSalesPerformanceDashboard)
 
 ---
 
@@ -37,10 +37,10 @@ Using Python for exploratory data analysis and Tableau for dashboard development
 
 | Metric                    |  Value |
 | ------------------------- | -----: |
-| Total Revenue             |  $8.9M |
+| Total Revenue             |  £8.9M |
 | Total Orders              | 18,532 |
 | Total Customers           |  4,338 |
-| Average Order Value (AOV) | $480.9 |
+| Average Order Value (AOV) | £480.9 |
 
 ---
 
@@ -89,11 +89,24 @@ Using Python for exploratory data analysis and Tableau for dashboard development
 ## Project Files
 
 ```text
-├── ecommerce_sales_performance_analysis.ipynb
-├── README.md
+1-ecommerce-sales-performance-analysis/
+│
+├── data/
+│   └── Online Retail.xlsx
+│
+├── notebook/
+│   └── ecommerce_sales_performance_analysis.ipynb
+│
+├── outputs/
+│   ├── monthly_sales.csv
+│   ├── country_sales.csv
+│   ├── top_products.csv
+│   └── cleaned_ecommerce_data.csv.zip
+│
 ├── images/
-│   └── dashboard_preview.png
-└── data/
+│   └── ecommerce_dashboard.png
+│
+└── README.md
 ```
 
 ---
