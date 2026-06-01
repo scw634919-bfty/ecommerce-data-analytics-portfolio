@@ -268,9 +268,9 @@ Based on the RFM segmentation, the business can take the following actions:
 
 | Segment | Customers | Avg Monetary | Total Revenue |
 |---------|-----------|--------------|---------------|
-| VIP | 877 | $6,732.67 | $5,904,555 |
-| Regular | 1,311 | $914.40 | $1,198,773 |
-| At Risk | 2,150 | $840.97 | $1,808,080 |
+| VIP | 877 | £6,732.67 | £5,904,555 |
+| Regular | 1,311 | £914.40 | £1,198,773 |
+| At Risk | 2,150 | £840.97 | £1,808,080 |
 
 ---
 
