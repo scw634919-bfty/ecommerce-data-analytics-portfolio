@@ -75,6 +75,13 @@ An ARIMA model was used to capture time-series patterns and forecast the next mo
 
 The ARIMA model produced a higher next-month forecast than the moving average model, suggesting that the model captured stronger upward movement or recent trend changes in the time series.
 
+**Business interpretation:** ARIMA reacts to the recent upward trend that the 3-month Moving Average smooths out, so the gap between the two forecasts (~£221K) is effectively a measure of recent momentum. This makes the choice of model a strategic decision rather than a purely technical one:
+
+- Use the **Moving Average** forecast for **conservative inventory planning**, when minimizing overstock risk and holding costs is the priority.
+- Use the **ARIMA** forecast for **aggressive, growth-oriented planning**, when the business expects continued momentum and wants to avoid stockouts during demand spikes.
+
+In practice, the two forecasts can serve as a **lower and upper bound** for purchasing decisions, giving planners a defensible range instead of a single point estimate.
+
 ## Key Insights
 - Monthly sales data provides a clearer view of demand trends than individual transaction-level data.
 - Removing incomplete or invalid transaction records improves the reliability of the forecast.
@@ -117,7 +124,7 @@ This project demonstrates a practical demand forecasting workflow using historic
 | File | Description |
 |------|-------------|
 | `outputs/monthly_sales.csv` | Monthly sales with 3-month moving average (13 months) |
-| `outputs/forecast_comparison.csv` | Next-month forecast: MA ($1.24M) vs ARIMA ($1.46M) |
+| `outputs/forecast_comparison.csv` | Next-month forecast: MA (£1.24M) vs ARIMA (£1.46M) |
 
 ---
 

@@ -36,7 +36,7 @@ Exploratory analysis of transaction-level retail data to surface revenue trends,
 Segments customers into groups such as VIP, Regular, and At-Risk using **Recency, Frequency, and Monetary** scoring, enabling targeted marketing and retention strategies.
 
 ### 3. Inventory Optimization Analysis
-Evaluates product performance and inventory health (sell-through, overstock, stockout risk) and simulates a rule-based **AI inventory decision assistant** that recommends reorder, promotion, or maintain actions.
+Simulates an **automated inventory decision engine** that triages **3,922 SKUs** into actionable groups — Reorder, Promotion/Bundle, or Maintain — using demand-driven rules (reorder point, sell-through, overstock). Turns inventory analytics into a repeatable decision workflow instead of a one-time report.
 
 ### 4. Demand Forecasting
 Aggregates monthly sales and forecasts next-month demand using a **3-month Moving Average** baseline and an **ARIMA** time-series model to support inventory and purchasing decisions.

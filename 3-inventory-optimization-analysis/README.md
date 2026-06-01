@@ -11,6 +11,8 @@ This project analyzes transaction-level retail sales data to evaluate product pe
 
 Additionally, the project simulates an **AI-assisted inventory decision system** that recommends inventory actions based on stock conditions.
 
+> **Highlight:** The simulated AI Inventory Decision Assistant translates raw stock signals into clear, actionable recommendations across **3,922 SKUs** — flagging **1,877** for immediate reorder, **926** for promotion/bundling, and **1,119** as healthy. This shifts inventory planning from reactive manual review to a scalable, rule-based decision workflow that improves operational efficiency.
+
 ---
 
 ## Business Problem
@@ -88,15 +90,26 @@ The project simulates inventory conditions due to the absence of real inventory 
 
 ### 5. AI Inventory Decision Assistant
 
-Built a rule-based recommendation engine to simulate AI-assisted inventory decisions.
+Built a rule-based recommendation engine to simulate AI-assisted inventory decisions. Each SKU is evaluated against demand-driven thresholds and routed to a business action automatically.
 
-Business actions include:
+**Decision Logic**
 
-| Inventory Condition | Recommendation |
-|--------------------|----------------|
-| Stockout Risk | Reorder Immediately |
-| Overstock | Run Promotion / Bundle |
-| Healthy Inventory | Maintain Inventory |
+```text
+reorder_point = weekly_demand × (lead_time 4wks + safety_stock 2wks)
+
+IF   stockout risk (ending inventory below reorder point)  → Reorder Immediately
+ELIF overstock OR sell-through rate < 30%                   → Run Promotion / Bundle
+ELSE                                                        → Maintain Inventory
+```
+
+| Inventory Condition | Recommendation | SKUs |
+|--------------------|----------------|-----:|
+| Stockout Risk | Reorder Immediately | 1,877 |
+| Overstock / Slow-moving | Run Promotion / Bundle | 926 |
+| Healthy Inventory | Maintain Inventory | 1,119 |
+| **Total analyzed** | | **3,922** |
+
+By encoding these rules, ~3,900 SKUs are triaged into actionable groups without manual review — demonstrating how analytics can be operationalized into a repeatable decision system rather than a one-time report.
 
 ---
 
