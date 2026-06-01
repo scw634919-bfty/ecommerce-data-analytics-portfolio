@@ -123,7 +123,7 @@ This project demonstrates a practical demand forecasting workflow using historic
 
 | File | Description |
 |------|-------------|
-| `outputs/monthly_sales.csv` | Monthly sales with 3-month moving average (13 months) |
+| `outputs/monthly_sales.csv` | Monthly sales with 3-month moving average (12 months) |
 | `outputs/forecast_comparison.csv` | Next-month forecast: MA (£1.24M) vs ARIMA (£1.46M) |
 
 ---

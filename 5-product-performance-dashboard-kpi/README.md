@@ -119,10 +119,10 @@ categories were created using product keywords.
 Example:
 
   Product Name   Category
-  -------------- ----------
+  -------------- ----------------
   Leather Bag    Bags
-  Kitchen Lamp   Lighting
-  Gift Box       Sets
+  Kitchen Lamp   Kitchen
+  Gift Box       Gift / Decorative
 
 ------------------------------------------------------------------------
 
