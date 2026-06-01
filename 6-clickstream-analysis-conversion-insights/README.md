@@ -1,6 +1,7 @@
 # Clickstream Analysis & Conversion Insights
 
 [![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/6-clickstream-analysis-conversion-insights/notebook/clickstream_analysis_conversion_insights.html)
+[![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/Clickstream_Analysis_Dashboard/ClickstreamAnalysisConversionInsights)
 
 ## Project Overview
 
@@ -22,6 +23,12 @@ Key business questions include:
 - How do product attributes such as color, location, and price relate to customer behavior?
 - Can clickstream data be used to predict user behavior?
 - What insights can support better merchandising, product placement, and conversion optimization?
+
+---
+
+## Dashboard Preview
+
+[![Clickstream Analysis & Conversion Insights Dashboard](images/clickstream_dashboard.png)](https://public.tableau.com/views/Clickstream_Analysis_Dashboard/ClickstreamAnalysisConversionInsights)
 
 ---
 
@@ -252,6 +259,9 @@ Examples of better target variables:
 │   ├── country_sessions.csv
 │   └── price_segment_by_category.csv
 │
+├── images/
+│   └── clickstream_dashboard.png
+│
 └── README.md
 ```
 
@@ -270,13 +280,13 @@ Examples of better target variables:
 
 ## Tableau Dashboard
 
-> 🔗 *Tableau Public link — coming soon*
+🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/Clickstream_Analysis_Dashboard/ClickstreamAnalysisConversionInsights)
 
 **Dashboard Views:**
-- Average price by color (bar chart)
-- Session volume by country (map)
 - Category traffic: Standard vs Premium segments (stacked bar)
-- High-price rate by product category (highlight table)
+- High-price rate by product category (bar chart)
+- Average price by colour code (bar chart)
+- Session volume by country — top 10 (bar chart)
 
 ---
 
