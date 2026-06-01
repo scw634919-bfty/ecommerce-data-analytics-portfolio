@@ -7580,19 +7580,21 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare and analyze the data for product performance insights</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Data cleaning (aligned with the portfolio-standard cleaning used in Project 1)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
-<span class="c1"># Prepare and analyze the data for product performance insights</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"customerid"</span><span class="p">])</span>
+<span class="c1"># Remove records that cannot be attributed to a customer/product</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"customerid"</span><span class="p">,</span> <span class="s2">"description"</span><span class="p">])</span>
 
-<span class="c1"># Prepare and analyze the data for product performance insights</span>
+<span class="c1"># Remove cancellations / returns and invalid prices</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"unitprice"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Parse dates and build the revenue column</span>
 <span class="n">df</span><span class="p">[</span><span class="s2">"invoicedate"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"invoicedate"</span><span class="p">])</span>
-
-<span class="c1"># Prepare and analyze the data for product performance insights</span>
 <span class="n">df</span><span class="p">[</span><span class="s2">"sales"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">"unitprice"</span><span class="p">]</span>
 
-<span class="c1"># Prepare and analyze the data for product performance insights</span>
+<span class="c1"># Standardize column names for the KPI layer</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
     <span class="s2">"invoiceno"</span><span class="p">:</span> <span class="s2">"order_id"</span><span class="p">,</span>
     <span class="s2">"customerid"</span><span class="p">:</span> <span class="s2">"customer_id"</span><span class="p">,</span>
@@ -7625,27 +7627,50 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare and analyze the data for product performance insights</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Keyword-based product categorization (consistent with Project 3's scheme)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">categorize</span><span class="p">(</span><span class="n">desc</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">desc</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">"Other"</span>
-    
-    <span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-    
-    <span class="k">if</span> <span class="s2">"bag"</span> <span class="ow">in</span> <span class="n">desc</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Bags"</span>
-    <span class="k">elif</span> <span class="s2">"set"</span> <span class="ow">in</span> <span class="n">desc</span> <span class="ow">or</span> <span class="s2">"box"</span> <span class="ow">in</span> <span class="n">desc</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Sets"</span>
-    <span class="k">elif</span> <span class="s2">"light"</span> <span class="ow">in</span> <span class="n">desc</span> <span class="ow">or</span> <span class="s2">"lamp"</span> <span class="ow">in</span> <span class="n">desc</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Lighting"</span>
-    <span class="k">elif</span> <span class="s2">"cake"</span> <span class="ow">in</span> <span class="n">desc</span> <span class="ow">or</span> <span class="s2">"kitchen"</span> <span class="ow">in</span> <span class="n">desc</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Kitchen"</span>
-    <span class="k">elif</span> <span class="s2">"christmas"</span> <span class="ow">in</span> <span class="n">desc</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Seasonal"</span>
-    <span class="k">elif</span> <span class="s2">"heart"</span> <span class="ow">in</span> <span class="n">desc</span> <span class="ow">or</span> <span class="s2">"decor"</span> <span class="ow">in</span> <span class="n">desc</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Home Decor"</span>
+    <span class="n">desc</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="c1"># Home decor (largest category in this dataset)</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">w</span> <span class="ow">in</span> <span class="n">desc</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">"candle"</span><span class="p">,</span> <span class="s2">"holder"</span><span class="p">,</span> <span class="s2">"lamp"</span><span class="p">,</span> <span class="s2">"frame"</span><span class="p">,</span> <span class="s2">"mirror"</span><span class="p">,</span> <span class="s2">"vase"</span><span class="p">,</span> <span class="s2">"clock"</span><span class="p">,</span>
+        <span class="s2">"heart"</span><span class="p">,</span> <span class="s2">"flower"</span><span class="p">,</span> <span class="s2">"light"</span><span class="p">,</span> <span class="s2">"decor"</span><span class="p">,</span> <span class="s2">"ornament"</span><span class="p">,</span> <span class="s2">"door"</span><span class="p">,</span>
+        <span class="s2">"picture"</span><span class="p">,</span> <span class="s2">"sign"</span><span class="p">,</span> <span class="s2">"hanger"</span><span class="p">,</span> <span class="s2">"shelf"</span><span class="p">,</span> <span class="s2">"storage"</span><span class="p">,</span> <span class="s2">"box"</span><span class="p">,</span> <span class="s2">"drawer"</span>
+    <span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">"home decor"</span>
+    <span class="c1"># Kitchen / dining</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">w</span> <span class="ow">in</span> <span class="n">desc</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">"kitchen"</span><span class="p">,</span> <span class="s2">"tea"</span><span class="p">,</span> <span class="s2">"coffee"</span><span class="p">,</span> <span class="s2">"mug"</span><span class="p">,</span> <span class="s2">"cup"</span><span class="p">,</span> <span class="s2">"plate"</span><span class="p">,</span> <span class="s2">"bowl"</span><span class="p">,</span> <span class="s2">"glass"</span><span class="p">,</span>
+        <span class="s2">"bottle"</span><span class="p">,</span> <span class="s2">"jar"</span><span class="p">,</span> <span class="s2">"tin"</span><span class="p">,</span> <span class="s2">"cutlery"</span><span class="p">,</span> <span class="s2">"spoon"</span><span class="p">,</span> <span class="s2">"fork"</span><span class="p">,</span> <span class="s2">"knife"</span><span class="p">,</span> <span class="s2">"tray"</span><span class="p">,</span>
+        <span class="s2">"baking"</span><span class="p">,</span> <span class="s2">"pan"</span><span class="p">,</span> <span class="s2">"kettle"</span><span class="p">,</span> <span class="s2">"teapot"</span><span class="p">,</span> <span class="s2">"cake"</span>
+    <span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">"kitchen"</span>
+    <span class="c1"># Bags</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">w</span> <span class="ow">in</span> <span class="n">desc</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"bag"</span><span class="p">,</span> <span class="s2">"purse"</span><span class="p">,</span> <span class="s2">"tote"</span><span class="p">,</span> <span class="s2">"backpack"</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">"bags"</span>
+    <span class="c1"># Gift / decorative</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">w</span> <span class="ow">in</span> <span class="n">desc</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">"gift"</span><span class="p">,</span> <span class="s2">"present"</span><span class="p">,</span> <span class="s2">"ribbon"</span><span class="p">,</span> <span class="s2">"card"</span><span class="p">,</span> <span class="s2">"wrap"</span><span class="p">,</span> <span class="s2">"wrapping"</span><span class="p">,</span>
+        <span class="s2">"party"</span><span class="p">,</span> <span class="s2">"bunting"</span><span class="p">,</span> <span class="s2">"decorative"</span>
+    <span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">"gift/decorative"</span>
+    <span class="c1"># Seasonal</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">w</span> <span class="ow">in</span> <span class="n">desc</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">"christmas"</span><span class="p">,</span> <span class="s2">"xmas"</span><span class="p">,</span> <span class="s2">"santa"</span><span class="p">,</span> <span class="s2">"snow"</span><span class="p">,</span> <span class="s2">"tree"</span><span class="p">,</span> <span class="s2">"easter"</span><span class="p">,</span>
+        <span class="s2">"halloween"</span><span class="p">,</span> <span class="s2">"valentine"</span><span class="p">,</span> <span class="s2">"seasonal"</span>
+    <span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">"seasonal"</span>
+    <span class="c1"># Sets / bundles</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">w</span> <span class="ow">in</span> <span class="n">desc</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"set"</span><span class="p">,</span> <span class="s2">"kit"</span><span class="p">,</span> <span class="s2">"pack"</span><span class="p">,</span> <span class="s2">"bundle"</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">"sets"</span>
+    <span class="c1"># Stationery</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">w</span> <span class="ow">in</span> <span class="n">desc</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">"paper"</span><span class="p">,</span> <span class="s2">"notebook"</span><span class="p">,</span> <span class="s2">"note"</span><span class="p">,</span> <span class="s2">"stationery"</span><span class="p">,</span> <span class="s2">"pen"</span><span class="p">,</span> <span class="s2">"pencil"</span><span class="p">,</span>
+        <span class="s2">"file"</span><span class="p">,</span> <span class="s2">"folder"</span><span class="p">,</span> <span class="s2">"sticker"</span>
+    <span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">"stationery"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Other"</span>
+        <span class="k">return</span> <span class="s2">"other"</span>
 
 <span class="n">df</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"product_name"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">categorize</span><span class="p">)</span>
 </pre></div>
@@ -7672,7 +7697,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 8. Monthly KPI</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Monthly KPI (used for the dashboard's monthly trend line)</span>
 <span class="n">df</span><span class="p">[</span><span class="s2">"year_month"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">"M"</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 
 <span class="n">monthly_kpi</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"year_month"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
@@ -7688,6 +7713,25 @@ a.anchor-link {
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Monthly KPI"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">monthly_kpi</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># ------------------------------------------------------------------</span>
+<span class="c1"># Overall KPI summary (single row) for the dashboard KPI cards.</span>
+<span class="c1">#</span>
+<span class="c1"># IMPORTANT: total_customers must be a DISTINCT count over the whole</span>
+<span class="c1"># dataset. We must NOT sum the monthly `total_customers` column, because</span>
+<span class="c1"># a customer who buys in multiple months would be counted once per month</span>
+<span class="c1"># (double counting). The distinct count below is the correct total.</span>
+<span class="c1"># ------------------------------------------------------------------</span>
+<span class="n">kpi_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span>
+    <span class="s2">"total_revenue"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"sales"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="s2">"total_orders"</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+    <span class="s2">"total_customers"</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"customer_id"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+    <span class="s2">"units_sold"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+    <span class="s2">"average_order_value"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"sales"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">}])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Overall KPI Summary"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kpi_summary</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7702,18 +7746,22 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Monthly KPI
   year_month  total_revenue  total_orders  total_customers  units_sold  \
-0    2010-12     554604.020          1708              948      296362   
-1    2011-01     475074.380          1236              783      269379   
-2    2011-02     436546.150          1202              798      262833   
-3    2011-03     579964.610          1619             1020      344012   
-4    2011-04     426047.851          1384              899      278585   
+0    2010-12     572713.890          1400              885      312265   
+1    2011-01     569445.040           987              741      349098   
+2    2011-02     447137.350           997              758      265622   
+3    2011-03     595500.760          1321              974      348503   
+4    2011-04     469200.361          1149              856      292222   
 
    average_order_value  
-0           324.709614  
-1           384.364385  
-2           363.183153  
-3           358.223972  
-4           307.838043  
+0           409.081350  
+1           576.945329  
+2           448.482798  
+3           450.795428  
+4           408.355406  
+
+Overall KPI Summary
+ total_revenue  total_orders  total_customers  units_sold  average_order_value
+     8911407.9         18532             4338     5167812               480.87
 </pre>
 </div>
 </div>
@@ -7738,7 +7786,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 9. Category KPI</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Category KPI (revenue / orders / units by product category)</span>
 <span class="n">category_kpi</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"category"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
     <span class="n">revenue</span><span class="o">=</span><span class="p">(</span><span class="s2">"sales"</span><span class="p">,</span> <span class="s2">"sum"</span><span class="p">),</span>
     <span class="n">orders</span><span class="o">=</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"nunique"</span><span class="p">),</span>
@@ -7747,6 +7795,26 @@ a.anchor-link {
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Category KPI"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">category_kpi</span><span class="p">)</span>
+
+<span class="c1"># Category performance for the dashboard bar chart (excludes "other"</span>
+<span class="c1"># for clearer business interpretation, adds SKU count and revenue share)</span>
+<span class="n">category_performance</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"other"</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"category"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">total_units_sold</span><span class="o">=</span><span class="p">(</span><span class="s2">"quantity"</span><span class="p">,</span> <span class="s2">"sum"</span><span class="p">),</span>
+        <span class="n">total_revenue</span><span class="o">=</span><span class="p">(</span><span class="s2">"sales"</span><span class="p">,</span> <span class="s2">"sum"</span><span class="p">),</span>
+        <span class="n">sku_count</span><span class="o">=</span><span class="p">(</span><span class="s2">"product_id"</span><span class="p">,</span> <span class="s2">"nunique"</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"total_revenue"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">category_performance</span><span class="p">[</span><span class="s2">"revenue_pct"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">category_performance</span><span class="p">[</span><span class="s2">"total_revenue"</span><span class="p">]</span> <span class="o">/</span> <span class="n">category_performance</span><span class="p">[</span><span class="s2">"total_revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Category Performance (excl. other)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">category_performance</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7760,14 +7828,25 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Category KPI
-     category      revenue  orders  units_sold
-4       Other  4287130.874   19781     2587658
-6        Sets  1353094.650   13950      711561
-0        Bags   872473.680    8486      530767
-1  Home Decor   572604.080    9424      335416
-3    Lighting   521507.300    8181      289234
-2     Kitchen   436741.120    7673      235420
-5    Seasonal   256514.110    4197      216832
+          category      revenue  orders  units_sold
+2       home decor  3666701.330   16547     2049771
+3          kitchen  1871562.800   14059      877623
+4            other  1458003.564   14058      669824
+0             bags   744968.400    7894      457683
+6             sets   420541.840    8617      344691
+7       stationery   286178.240    4079      256468
+1  gift/decorative   270192.910    6545      368711
+5         seasonal   193258.820    3898      143041
+
+Category Performance (excl. other)
+          category  total_units_sold  total_revenue  sku_count  revenue_pct
+2       home decor           2049771     3666701.33       1341        49.19
+3          kitchen            877623     1871562.80        620        25.11
+0             bags            457683      744968.40        155        10.00
+5             sets            344691      420541.84        186         5.64
+6       stationery            256468      286178.24        119         3.84
+1  gift/decorative            368711      270192.91        178         3.63
+4         seasonal            143041      193258.82        103         2.59
 </pre>
 </div>
 </div>
@@ -7784,7 +7863,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=28bbbab3-254c-41ae-b2c3-8cc9bd3ede69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28bbbab3-254c-41ae-b2c3-8cc9bd3ede69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7795,18 +7874,51 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">"../outputs"</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># Save for Tableau / Power BI</span>
+<span class="c1"># Row-level cleaned dataset — use this as the Tableau source so the KPI</span>
+<span class="c1"># cards can compute COUNTD(customer_id) / COUNTD(order_id) correctly.</span>
+<span class="n">cleaned_cols</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">,</span> <span class="s2">"year_month"</span><span class="p">,</span> <span class="s2">"customer_id"</span><span class="p">,</span>
+    <span class="s2">"product_id"</span><span class="p">,</span> <span class="s2">"product_name"</span><span class="p">,</span> <span class="s2">"category"</span><span class="p">,</span>
+    <span class="s2">"quantity"</span><span class="p">,</span> <span class="s2">"unit_price"</span><span class="p">,</span> <span class="s2">"sales"</span><span class="p">,</span> <span class="s2">"country"</span>
+<span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="n">cleaned_cols</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"cleaned_kpi_data.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Aggregated tables for the dashboard</span>
+<span class="n">kpi_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/kpi_summary.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">monthly_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/monthly_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">category_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/category_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">category_performance</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/category_performance.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Convenience copies next to the notebook</span>
+<span class="n">kpi_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"kpi_summary.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">monthly_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"monthly_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">category_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"category_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># Also save to outputs/ folder</span>
-<span class="n">monthly_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/monthly_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">category_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/category_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Saved:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  cleaned_kpi_data.csv -"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"rows (Tableau source)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  ../outputs/kpi_summary.csv - overall KPI totals"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"  ../outputs/monthly_kpi.csv -"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_kpi</span><span class="p">),</span> <span class="s2">"months"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"  ../outputs/category_kpi.csv -"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">category_kpi</span><span class="p">),</span> <span class="s2">"categories"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  ../outputs/category_performance.csv -"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">category_performance</span><span class="p">),</span> <span class="s2">"categories (excl. other)"</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Saved:
+  cleaned_kpi_data.csv - 397,884 rows (Tableau source)
+  ../outputs/kpi_summary.csv - overall KPI totals
+  ../outputs/monthly_kpi.csv - 13 months
+  ../outputs/category_kpi.csv - 8 categories
+  ../outputs/category_performance.csv - 7 categories (excl. other)
+</pre>
 </div>
 </div>
 </div>

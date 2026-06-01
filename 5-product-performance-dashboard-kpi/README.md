@@ -105,9 +105,14 @@ Dashboard Visualization
 The following preprocessing steps were applied:
 
 -   Converted column names to lowercase
--   Removed missing customer IDs
+-   Removed missing customer IDs and product descriptions
+-   Removed cancellations / returns and invalid records (`quantity <= 0`, `unit_price <= 0`)
 -   Converted order date to datetime format
 -   Created sales column using quantity × unit price
+
+> These steps match the portfolio-standard cleaning used in Project 1, so
+> the KPI totals in this dashboard are consistent with the
+> E-commerce Sales Performance project.
 
 ------------------------------------------------------------------------
 
@@ -118,15 +123,28 @@ categories were created using product keywords.
 
 Example:
 
-  Product Name   Category
-  -------------- ----------------
-  Leather Bag    Bags
-  Kitchen Lamp   Kitchen
-  Gift Box       Gift / Decorative
+  Product Name          Category
+  --------------------- ----------------
+  Lunch Bag Red         Bags
+  Tea Cup And Saucer    Kitchen
+  Wooden Picture Frame  Home Decor
 
 ------------------------------------------------------------------------
 
 ## Key Performance Indicators (KPIs)
+
+### Overall KPI Summary
+
+| Metric                    |   Value |
+| ------------------------- | ------: |
+| Total Revenue             |  £8.91M |
+| Total Orders              |  18,532 |
+| Total Customers           |   4,338 |
+| Average Order Value (AOV) | £480.87 |
+
+> Customers and orders are **distinct counts** over the full dataset. They are
+> not summed from the monthly table (a repeat buyer would otherwise be counted
+> once per month). These totals match the E-commerce Sales Performance project.
 
 ### 1. Monthly KPI Metrics
 
@@ -177,9 +195,15 @@ transformed into business insights by:
 
 | File | Description |
 |------|-------------|
+| `outputs/kpi_summary.csv` | Overall KPI totals — Total Revenue (£8.91M), Total Orders (18,532), Total Customers (4,338), Units Sold, AOV (£480.87). Distinct counts; used for the KPI cards |
 | `outputs/monthly_kpi.csv` | Monthly revenue, orders, customers, units sold, and AOV (13 months) |
 | `outputs/category_kpi.csv` | Revenue, orders, and units sold by product category |
-| `outputs/category_performance.csv` | Category revenue, units sold, SKU count, and revenue % (used in dashboard) |
+| `outputs/category_performance.csv` | Category revenue, units sold, SKU count, and revenue % (excl. other; used in dashboard) |
+
+> **Tableau source:** `cleaned_kpi_data.csv` (row-level cleaned transactions) is
+> written next to the notebook so the KPI cards can compute
+> `COUNTD(customer_id)` / `COUNTD(order_id)` correctly instead of summing
+> pre-aggregated monthly counts.
 
 ---
 
