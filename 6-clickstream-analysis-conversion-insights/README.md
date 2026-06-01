@@ -230,8 +230,8 @@ The model currently uses `high_price_flag` (premium vs. standard tier) as a prox
 
 **The clear next step** is to evolve this into a true **Conversion Rate (CVR) prediction** once a conversion signal is available (e.g., a `Purchase ID`, add-to-cart, or checkout flag). With that target I would:
 
-- Predict conversion probability per session and measure **CVR by category, colour, and country**.
-- Identify the highest-converting **feature combinations** (e.g., which category × colour pairings convert best) using Random Forest feature importance.
+- Predict conversion probability per session and measure **CVR by category, color, and country**.
+- Identify the highest-converting **feature combinations** (e.g., which category × color pairings convert best) using Random Forest feature importance.
 - Translate those findings into **marketing budget allocation** and merchandising recommendations — directing spend toward high-converting segments.
 
 Examples of stronger target variables for that version:
@@ -286,7 +286,7 @@ Examples of stronger target variables for that version:
 **Dashboard Views:**
 - Category traffic: Standard vs Premium segments (stacked bar)
 - High-price rate by product category (bar chart)
-- Average price by colour code (bar chart)
+- Average price by color code (bar chart)
 - Session volume by country — top 10 (bar chart)
 
 ---

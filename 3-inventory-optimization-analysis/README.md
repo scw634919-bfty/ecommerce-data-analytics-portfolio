@@ -95,7 +95,8 @@ Built a rule-based recommendation engine to simulate AI-assisted inventory decis
 **Decision Logic**
 
 ```text
-reorder_point = weekly_demand × (lead_time 4wks + safety_stock 2wks)
+reorder_point = weekly_demand × (lead_time + safety_stock)
+                where  lead_time = 4 weeks,  safety_stock = 2 weeks
 
 IF   stockout risk (ending inventory below reorder point)  → Reorder Immediately
 ELIF overstock OR sell-through rate < 30%                   → Run Promotion / Bundle
