@@ -1,6 +1,7 @@
 # Ecommerce Sales Analytics Dashboard
 
 [![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/1-ecommerce-sales-performance-analysis/notebook/ecommerce_sales_performance_analysis.html)
+[![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_17799845497770/E-commerceSalesPerformanceDashboard)
 
 ## Project Overview
 
@@ -26,11 +27,9 @@ Using Python for exploratory data analysis and Tableau for dashboard development
 
 ---
 
-## Interactive Dashboard
+## Tableau Dashboard
 
-View the Tableau dashboard here:
-
-**Tableau Public:** [[View Interactive Tableau Dashboard](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_17799845497770/E-commerceSalesPerformanceDashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)]
+🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_17799845497770/E-commerceSalesPerformanceDashboard)
 
 ---
 
