@@ -1,6 +1,6 @@
 # Customer Segmentation Using RFM Analysis
 
-[![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/2-customer-segmentation-rfm/notebook/customer_segmentation_rfm.html) [![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-orange?logo=tableau)](https://public.tableau.com/views/Customer_Segmentation_RFM_Dashboard/CustomerSegmentationDashboard)
+[![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/2-customer-segmentation-rfm/notebook/customer_segmentation_rfm.html) [![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/Customer_Segmentation_RFM_Dashboard/CustomerSegmentationDashboard)
 
 ## Project Overview
 
@@ -25,7 +25,7 @@ This project uses transaction-level purchase data to better understand customer 
 
 ## Dashboard Preview
 
-![Dashboard Preview](images/rfm_dashboard.png)
+[![Customer Segmentation (RFM) Dashboard](images/rfm_dashboard.png)](https://public.tableau.com/views/Customer_Segmentation_RFM_Dashboard/CustomerSegmentationDashboard)
 
 ---
 
@@ -234,6 +234,9 @@ Based on the RFM segmentation, the business can take the following actions:
 │   ├── segment_summary.csv
 │   └── rfm_details.csv
 │
+├── images/
+│   └── rfm_dashboard.png
+│
 └── README.md
 ```
 
@@ -251,7 +254,7 @@ Based on the RFM segmentation, the business can take the following actions:
 
 ## Tableau Dashboard
 
-> 🔗 *Tableau Public link — coming soon*
+🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/Customer_Segmentation_RFM_Dashboard/CustomerSegmentationDashboard)
 
 **Dashboard Views:**
 - Segment distribution (customer count by VIP / Regular / At Risk)
