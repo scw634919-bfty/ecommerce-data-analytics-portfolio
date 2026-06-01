@@ -128,10 +128,10 @@ df["high_price_flag"] = (df["price"] > df["price"].median()).astype(int)
 
 This variable marks whether a product price is above the median price.
 
-- `1` = above median price
-- `0` = below or equal to median price
+- `1` = above median price (premium tier)
+- `0` = below or equal to median price (standard tier)
 
-This is currently used as a practice target for the machine learning model.
+Because this clickstream dataset contains no explicit purchase/conversion event, `high_price_flag` is used as a **proxy target to profile premium-tier products**. Rather than predicting conversion directly, the model learns which product attributes — color, category, location, and country — characterize premium engagement. This is a deliberate, domain-informed choice that still produces actionable merchandising insight when true conversion labels are unavailable.
 
 ---
 
@@ -224,19 +224,20 @@ Based on this analysis, an e-commerce team could:
 
 ---
 
-## Current Limitation
+## Current Limitation & Roadmap
 
-The current notebook uses `high_price_flag` as a temporary machine learning target.
+The model currently uses `high_price_flag` (premium vs. standard tier) as a proxy target because the dataset has no purchase event. This profiles *premium-tier engagement*, not actual *conversion* — a limitation I am explicit about.
 
-This means the model is predicting whether a product is high-priced, not whether a customer actually converted or purchased.
+**The clear next step** is to evolve this into a true **Conversion Rate (CVR) prediction** once a conversion signal is available (e.g., a `Purchase ID`, add-to-cart, or checkout flag). With that target I would:
 
-For a stronger portfolio version, the project should be improved by creating or using a true conversion target.
+- Predict conversion probability per session and measure **CVR by category, colour, and country**.
+- Identify the highest-converting **feature combinations** (e.g., which category × colour pairings convert best) using Random Forest feature importance.
+- Translate those findings into **marketing budget allocation** and merchandising recommendations — directing spend toward high-converting segments.
 
-Examples of better target variables:
+Examples of stronger target variables for that version:
 
-- Purchase completed
+- Purchase completed / Reached checkout page
 - Added to cart
-- Reached checkout page
 - Viewed product detail page
 - Session ended with conversion
 
