@@ -7511,17 +7511,6 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=colab-badge">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><a href="https://colab.research.google.com/github/scw634919-bfty/ecommerce-data-analytics-portfolio/blob/main/4-demand-forecasting/notebook/demand_forecasting.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
-</div>
-</div>
-</div>
-</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=98041ded-411e-4c50-88cd-c98cd529994a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7673,7 +7662,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/var/folders/y0/g_vvng7x6gn1ggql3qv6040m0000gn/T/ipykernel_31390/1711826655.py:4: FutureWarning: 'm' is deprecated and will be removed in a future version, please use 'M' instead.
+<pre>/var/folders/y0/g_vvng7x6gn1ggql3qv6040m0000gn/T/ipykernel_26884/1711826655.py:4: FutureWarning: 'm' is deprecated and will be removed in a future version, please use 'M' instead.
   df["month"] = df["invoicedate"].dt.to_period("m").astype(str)
 </pre>
 </div>
@@ -7876,7 +7865,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;matplotlib.collections.PathCollection at 0x15954a490&gt;</pre>
+<pre>&lt;matplotlib.collections.PathCollection at 0x1635a0e10&gt;</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -7912,12 +7901,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=export_code_dem">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=export_code_dem">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -7942,6 +7931,121 @@ a.anchor-link {
 <span class="nb">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">forecast_df</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Saved:
+  ../outputs/monthly_sales.csv - 12 months
+  ../outputs/forecast_comparison.csv
+
+     month  ma_forecast  arima_forecast
+0  2011-12   1241021.93       1461941.3
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1aca216b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="11.-Model-Accuracy-Evaluation-(Holdout-Test)">11. Model Accuracy Evaluation (Holdout Test)<a class="anchor-link" href="#11.-Model-Accuracy-Evaluation-(Holdout-Test)">¶</a></h2><p>The forecasts above are next-month projections with no ground truth to score against. To measure accuracy honestly, we hold out the <strong>last 3 months</strong> as a test set, refit on the earlier months, and compare <strong>walk-forward one-step-ahead</strong> forecasts for both models using MAPE, RMSE, and MAE.</p>
+<blockquote>
+<p><strong>Caveat:</strong> only 12 complete months are available (9 train / 3 test), so these numbers are illustrative, not statistically robust.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6fc4b13b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Model accuracy on a held-out test set (proper train/test split)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.tsa.arima.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ARIMA</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">monthly_sales</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"month"</span><span class="p">)[</span><span class="s2">"sales"</span><span class="p">]</span>
+
+<span class="n">N_TEST</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># hold out the last 3 months</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="n">N_TEST</span><span class="p">],</span> <span class="n">ts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="n">N_TEST</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Months available: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span><span class="si">}</span><span class="s2"> | Train: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train</span><span class="p">)</span><span class="si">}</span><span class="s2"> | Test: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="si">}</span><span class="s2"> "</span>
+      <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">test</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">%Y-%m</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">test</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">%Y-%m</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_metrics</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+    <span class="n">actual</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="nb">float</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">actual</span> <span class="o">-</span> <span class="n">pred</span><span class="p">))</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">actual</span> <span class="o">-</span> <span class="n">pred</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">mape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">actual</span> <span class="o">-</span> <span class="n">pred</span><span class="p">)</span> <span class="o">/</span> <span class="n">actual</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="k">return</span> <span class="n">mape</span><span class="p">,</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">mae</span>
+
+<span class="c1"># Moving-average baseline: one-step-ahead = mean of the prior 3 actual months</span>
+<span class="n">ma_preds</span> <span class="o">=</span> <span class="p">[</span><span class="n">ts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">3</span><span class="p">:</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span> <span class="o">-</span> <span class="n">N_TEST</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">))]</span>
+
+<span class="c1"># ARIMA(1,1,1): walk-forward one-step-ahead, refit at each step</span>
+<span class="n">arima_preds</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="p">[],</span> <span class="nb">list</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">actual</span> <span class="ow">in</span> <span class="n">test</span><span class="p">:</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">ARIMA</span><span class="p">(</span><span class="n">history</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">arima_preds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+
+<span class="n">ma</span> <span class="o">=</span> <span class="n">_metrics</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">ma_preds</span><span class="p">)</span>
+<span class="n">ar</span> <span class="o">=</span> <span class="n">_metrics</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">arima_preds</span><span class="p">)</span>
+
+<span class="n">eval_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">"MAPE_%"</span><span class="p">:</span> <span class="p">[</span><span class="n">ma</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ar</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="s2">"RMSE"</span><span class="p">:</span> <span class="p">[</span><span class="n">ma</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ar</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s2">"MAE"</span><span class="p">:</span> <span class="p">[</span><span class="n">ma</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">ar</span><span class="p">[</span><span class="mi">2</span><span class="p">]]},</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"Moving Average (3-mo)"</span><span class="p">,</span> <span class="s2">"ARIMA(1,1,1)"</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eval_results</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">ARIMA vs baseline -&gt; MAPE </span><span class="si">{</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">ar</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">ma</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">+.1f</span><span class="si">}</span><span class="s2">%, "</span>
+      <span class="sa">f</span><span class="s2">"RMSE </span><span class="si">{</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">ar</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">ma</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">+.1f</span><span class="si">}</span><span class="s2">%, MAE </span><span class="si">{</span><span class="p">(</span><span class="n">ma</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">ar</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">ma</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">+.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Months available: 12 | Train: 9 | Test: 3 (2011-09 -&gt; 2011-11)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>                       MAPE_%       RMSE        MAE
+Moving Average (3-mo)   30.20  392385.74  379937.82
+ARIMA(1,1,1)            23.65  303230.83  293270.58
+
+ARIMA vs baseline -&gt; MAPE +21.7%, RMSE +22.7%, MAE +22.8%
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>/opt/anaconda3/envs/aml_env/lib/python3.13/site-packages/statsmodels/tsa/statespace/sarimax.py:966: UserWarning: Non-stationary starting autoregressive parameters found. Using zeros as starting parameters.
+  warn('Non-stationary starting autoregressive parameters'
+</pre>
 </div>
 </div>
 </div>
