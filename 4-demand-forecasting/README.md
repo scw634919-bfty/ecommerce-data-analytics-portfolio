@@ -82,6 +82,19 @@ The ARIMA model produced a higher next-month forecast than the moving average mo
 
 In practice, the two forecasts can serve as a **lower and upper bound** for purchasing decisions, giving planners a defensible range instead of a single point estimate.
 
+## Model Accuracy (Holdout Evaluation)
+
+The next-month figures above are projections; to measure accuracy, the last **3 months** (Sep–Nov 2011) were held out as a test set and both models were scored with walk-forward one-step-ahead forecasts. *(See section 11 of the notebook to reproduce — nothing is hardcoded.)*
+
+| Model | MAPE | RMSE | MAE |
+|---|---:|---:|---:|
+| 3-Month Moving Average | 30.20% | 392,386 | 379,938 |
+| ARIMA(1,1,1) | 23.65% | 303,231 | 293,271 |
+
+**ARIMA beat the baseline on all three metrics — MAPE −21.7%, RMSE −22.7%, MAE −22.8%.**
+
+> **Honest caveat:** only 12 complete monthly data points exist (9 train / 3 test), so this is illustrative rather than statistically robust. ARIMA's edge comes largely from capturing the upward trend in the holdout window that a trailing moving average lags behind; both models still have high absolute error (~24–30% MAPE). Weekly/daily aggregation would yield far more points and a sturdier estimate.
+
 ## Key Insights
 - Monthly sales data provides a clearer view of demand trends than individual transaction-level data.
 - Removing incomplete or invalid transaction records improves the reliability of the forecast.
@@ -142,5 +155,5 @@ This project demonstrates a practical demand forecasting workflow using historic
 - Forecast demand by product category or SKU
 - Add seasonality features
 - Compare additional models such as Prophet or SARIMA
-- Evaluate model accuracy using train-test split
+- Strengthen the accuracy estimate with weekly/daily aggregation and cross-validated folds
 - Build a dashboard to monitor actual vs. forecasted demand
