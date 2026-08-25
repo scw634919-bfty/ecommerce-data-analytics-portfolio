@@ -1,4 +1,4 @@
-# E-commerce Inventory Optimization & AI Decision Analysis
+# E-commerce Inventory Optimization & Decision Analysis
 
 [![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/3-inventory-optimization-analysis/notebook/inventory_optimization_analysis.html)
 [![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/Inventory_Optimization_Dashboard_redesign/InventoryOptimizationDashboard)
@@ -9,9 +9,9 @@ Efficient inventory management is critical in e-commerce because poor stock plan
 
 This project analyzes transaction-level retail sales data to evaluate product performance, inventory health, and category-level revenue trends.
 
-Additionally, the project simulates an **AI-assisted inventory decision system** that recommends inventory actions based on stock conditions.
+Additionally, the project implements a **rule-based inventory decision system** that recommends inventory actions based on stock conditions.
 
-> **Highlight:** The simulated AI Inventory Decision Assistant translates raw stock signals into clear, actionable recommendations across **3,922 SKUs** — flagging **1,877** for immediate reorder, **926** for promotion/bundling, and **1,119** as healthy. This shifts inventory planning from reactive manual review to a scalable, rule-based decision workflow that improves operational efficiency.
+> **Highlight:** The Inventory Decision Assistant translates raw stock signals into clear, actionable recommendations across **3,922 SKUs** — flagging **1,877** for immediate reorder, **926** for promotion/bundling, and **1,119** as healthy. This shifts inventory planning from reactive manual review to a scalable, rule-based decision workflow that improves operational efficiency.
 
 ---
 
@@ -89,9 +89,9 @@ Calculated inventory metrics including:
 
 The project simulates inventory conditions due to the absence of real inventory data.
 
-### 5. AI Inventory Decision Assistant
+### 5. Inventory Decision Assistant
 
-Built a rule-based recommendation engine to simulate AI-assisted inventory decisions. Each SKU is evaluated against demand-driven thresholds and routed to a business action automatically.
+Built a rule-based recommendation engine that automates inventory decisions. Each SKU is evaluated against demand-driven thresholds and routed to a business action automatically.
 
 **Decision Logic**
 
