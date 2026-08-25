@@ -178,6 +178,66 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 
 ---
 
+## Low-Code Alerting Prototype (Zapier + Airtable)
+
+To close the loop between analysis and action, the reorder logic above was extended into a lightweight, live monitoring layer using **Airtable** and **Zapier** — turning the static `weeks_of_coverage` calculation into a stakeholder-facing alert instead of a report someone has to remember to check.
+
+> **Highlight:** A 4-step Zap watches an Airtable feed of SKU-level coverage metrics and automatically emails stakeholders the moment a SKU drops below its coverage threshold — replacing manual spreadsheet monitoring with an always-on, rule-based alert.
+
+**Architecture**
+
+An Airtable base (`Inventory Coverage Alerts` → `Coverage Feed` table) mirrors the reorder-point fields from the analysis (`sku`, `product_name`, `category`, `ending_inventory`, `estimated_weekly_demand`, `weeks_of_coverage`, `threshold_weeks`, `coverage_status`, `recommended_reorder_qty`) plus two fields added specifically for alerting: `alert_sent` (boolean) and `last_modified`.
+
+```text
+Airtable — Coverage Feed table
+   │  row created or updated
+   ▼
+1. Trigger — New or Updated Record (Airtable)
+   │
+   ▼
+2. Filter — continue only if coverage_status = "Below Threshold" AND alert_sent = false
+   │
+   ▼
+3. Action — Send Outbound Email
+   │        SKU, product, category, ending inventory, weeks of coverage,
+   │        and recommended reorder qty, formatted for a stakeholder
+   ▼
+4. Action — Update Record (Airtable)
+            writes alert_sent = true back onto the SAME record
+   │
+   └── next poll: that record now fails the Step 2 filter → stays quiet
+        (no duplicate alerts for a SKU that hasn't changed)
+```
+
+| Step | Type | Purpose |
+|------|------|---------|
+| 1. New or Updated Record | Trigger (Airtable) | Polls the Coverage Feed table for any row that was created or changed |
+| 2. Filter | Filter by Zapier | Only continues if `coverage_status` = "Below Threshold" and `alert_sent` = false |
+| 3. Send Outbound Email | Action (Email by Zapier) | Sends a formatted alert with the SKU's key coverage and reorder metrics |
+| 4. Update Record | Action (Airtable) | Writes `alert_sent = true` back onto the triggering record via a dynamic Record ID mapping |
+
+**Why an explicit `alert_sent` flag:** Zapier's own duplicate-run protection isn't guaranteed across polling intervals, so idempotency is handled explicitly in the data instead. Step 4 writes the result of the alert back into the same row that triggered it, which is also why Zapier's editor flags this Zap as a "possible loop" — step 4's write can re-trigger step 1's polling trigger. The loop is intentionally self-terminating: once `alert_sent` is true, the Step 2 filter blocks that record from re-entering the workflow, so each SKU alerts once per threshold breach, not once per poll.
+
+**Screenshots**
+
+<p float="left">
+  <img src="images/zapier_step1_trigger.jpg" width="410" alt="Zapier trigger step configured on the Airtable Coverage Feed table" />
+  <img src="images/zapier_step2_filter.jpg" width="410" alt="Zapier filter step: coverage_status Below Threshold and alert_sent is false" />
+</p>
+<p float="left">
+  <img src="images/zapier_step3_email.jpg" width="410" alt="Zapier email step composed with dynamic Airtable fields" />
+  <img src="images/zapier_step4_update_record_alert_flag.jpg" width="410" alt="Zapier Update Record step writing alert_sent = true back to Airtable" />
+</p>
+<img src="images/airtable_coverage_feed_table.jpg" width="830" alt="Airtable Coverage Feed table with reorder and coverage metrics" />
+
+**Known limitations**
+
+- Runs on Zapier's polling interval rather than an instant webhook, so alerts lag the underlying data change by a few minutes.
+- Built and tested on Zapier's free trial, which caps multi-step Zaps to 14 days without a paid plan — noted here as a deliberate prototype-scope tradeoff, not a design flaw.
+- Delivery channel is email only; a Slack/Teams step would be a natural next add for teams that live in chat rather than inbox.
+
+---
+
 ## Tech Stack
 
 - Python
@@ -186,6 +246,8 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 - Matplotlib
 - Jupyter Notebook
 - Tableau Public
+- Zapier
+- Airtable
 
 ---
 
@@ -195,3 +257,4 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 - Implement safety stock calculation with demand variability
 - Build ML-based inventory forecasting
 - Expand category coverage with more granular product tagging
+- Move the alerting prototype from a polling trigger to an instant webhook, and add a Slack/Teams delivery option
