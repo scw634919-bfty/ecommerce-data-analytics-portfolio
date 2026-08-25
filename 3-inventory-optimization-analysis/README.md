@@ -28,7 +28,7 @@ This project aims to answer the following business questions:
 
 ## Dashboard Preview
 
-[![Inventory Optimization Dashboard](images/inventory_dashboard.png)](https://public.tableau.com/views/Inventory_Optimization_Dashboard/InventoryOptimizationDashboard)
+[![Inventory Optimization Dashboard](images/Inventory Optimization Dashboard.png)](https://public.tableau.com/views/Inventory_Optimization_Dashboard_redesign/InventoryOptimizationDashboard)
 
 ---
 
