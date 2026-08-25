@@ -1,7 +1,7 @@
 # E-commerce Inventory Optimization & AI Decision Analysis
 
 [![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/3-inventory-optimization-analysis/notebook/inventory_optimization_analysis.html)
-[![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/Inventory_Optimization_Dashboard/InventoryOptimizationDashboard)
+[![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/Inventory_Optimization_Dashboard_redesign/InventoryOptimizationDashboard)
 
 ## Project Overview
 
