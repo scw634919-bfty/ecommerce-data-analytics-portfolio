@@ -9244,7 +9244,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="10.-AI-Inventory-Decision-Assistant">10. AI Inventory Decision Assistant <a class="anchor-link" href="#10.-AI-Inventory-Decision-Assistant">¶</a></h2><p>In this section, we simulate a simple <strong>AI-assisted inventory decision system</strong> that recommends actions based on inventory health indicators.</p>
+<h2 id="10.-Inventory-Decision-Assistant">10. Inventory Decision Assistant <a class="anchor-link" href="#10.-Inventory-Decision-Assistant">¶</a></h2><p>In this section, we implement a simple <strong>rule-based inventory decision system</strong> that recommends actions based on inventory health indicators.</p>
 <p><strong>Decision Rules</strong></p>
 <ul>
 <li><strong>Stockout Risk</strong> → Reorder Immediately</li>
@@ -9262,10 +9262,10 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># AI Inventory Decision Assistant</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Inventory Decision Assistant</span>
 <span class="c1"># Generate inventory recommendations based on stock health</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">inventory_ai_assistant</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inventory_decision_assistant</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">"stockout_risk_flag"</span><span class="p">]:</span>
         <span class="k">return</span> <span class="s2">"Reorder Immediately"</span>
     <span class="k">elif</span> <span class="n">row</span><span class="p">[</span><span class="s2">"overstock_flag"</span><span class="p">]:</span>
@@ -9275,13 +9275,13 @@ a.anchor-link {
 
 
 <span class="c1"># Apply recommendation logic to the existing inventory dataframe</span>
-<span class="n">inventory</span><span class="p">[</span><span class="s2">"ai_recommendation"</span><span class="p">]</span> <span class="o">=</span> <span class="n">inventory</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-    <span class="n">inventory_ai_assistant</span><span class="p">,</span>
+<span class="n">inventory</span><span class="p">[</span><span class="s2">"recommendation"</span><span class="p">]</span> <span class="o">=</span> <span class="n">inventory</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="n">inventory_decision_assistant</span><span class="p">,</span>
     <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
 
 <span class="c1"># Recommendation table</span>
-<span class="n">ai_recommendation_table</span> <span class="o">=</span> <span class="n">inventory</span><span class="p">[[</span>
+<span class="n">recommendation_preview_table</span> <span class="o">=</span> <span class="n">inventory</span><span class="p">[[</span>
     <span class="s2">"sku"</span><span class="p">,</span>
     <span class="s2">"product_name"</span><span class="p">,</span>
     <span class="s2">"category"</span><span class="p">,</span>
@@ -9289,11 +9289,11 @@ a.anchor-link {
     <span class="s2">"ending_inventory"</span><span class="p">,</span>
     <span class="s2">"stockout_risk_flag"</span><span class="p">,</span>
     <span class="s2">"overstock_flag"</span><span class="p">,</span>
-    <span class="s2">"ai_recommendation"</span>
+    <span class="s2">"recommendation"</span>
 <span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"AI Inventory Recommendations"</span><span class="p">)</span>
-<span class="n">ai_recommendation_table</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Inventory Recommendations"</span><span class="p">)</span>
+<span class="n">recommendation_preview_table</span>
 </pre></div>
 </div>
 </div>
@@ -9306,7 +9306,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>AI Inventory Recommendations
+<pre>Inventory Recommendations
 </pre>
 </div>
 </div>
@@ -9338,7 +9338,7 @@ a.anchor-link {
 <th>ending_inventory</th>
 <th>stockout_risk_flag</th>
 <th>overstock_flag</th>
-<th>ai_recommendation</th>
+<th>recommendation</th>
 </tr>
 </thead>
 <tbody>
