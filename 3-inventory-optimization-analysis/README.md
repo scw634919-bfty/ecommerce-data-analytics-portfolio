@@ -11,7 +11,7 @@ This project analyzes transaction-level retail sales data to evaluate product pe
 
 Additionally, the project implements a **rule-based inventory decision system** that recommends inventory actions based on stock conditions.
 
-> **Highlight:** The Inventory Decision Assistant translates raw stock signals into clear, actionable recommendations across **3,922 SKUs** — flagging **1,877** for immediate reorder, **926** for promotion/bundling, and **1,119** as healthy. This shifts inventory planning from reactive manual review to a scalable, rule-based decision workflow that improves operational efficiency.
+> **Highlight:** The Inventory Decision Assistant translates stock coverage and revenue priority into clear, actionable recommendations across **3,922 SKUs**: **228** high-revenue (A-class) SKUs for immediate reorder, **654** to monitor and reorder soon, **603** for promotion/bundling, and **2,437** as healthy. This shifts inventory planning from reactive manual review to a scalable, rule-based decision workflow that improves operational efficiency.
 
 ---
 
@@ -83,32 +83,37 @@ Analyzed:
 
 Calculated inventory metrics including:
 
+- Weeks of coverage (on-hand stock ÷ weekly demand)
 - Sell-through rate
-- Overstock detection
-- Stockout risk detection
+- Stockout risk (less than 6 weeks of coverage)
+- Overstock (more than 26 weeks of coverage)
 
-The project simulates inventory conditions due to the absence of real inventory data.
+**Simulation assumption:** the dataset has no stock levels, so on-hand inventory is simulated as **weeks of supply** (log-normal, median 10 weeks, at least 1 unit per SKU). Stock therefore scales with each SKU's demand. The SKU counts below depend on this assumption; the deliverable is the decision logic, which can run on real inventory from a WMS, ERP, or Shopify export.
 
 ### 5. Inventory Decision Assistant
 
-Built a rule-based recommendation engine that automates inventory decisions. Each SKU is evaluated against demand-driven thresholds and routed to a business action automatically.
+Built a rule-based recommendation engine that automates inventory decisions. Each SKU is evaluated on stock coverage and revenue priority (ABC class) and routed to a business action automatically.
 
 **Decision Logic**
 
 ```text
-reorder_point = weekly_demand × (lead_time + safety_stock)
-                where  lead_time = 4 weeks,  safety_stock = 2 weeks
+weeks_of_coverage = ending_inventory ÷ weekly_demand
+reorder_point     = weekly_demand × (lead_time + safety_stock)
+                    where  lead_time = 4 weeks,  safety_stock = 2 weeks  → 6 weeks
+abc_class         = A: top 80% of revenue,  B: next 15%,  C: last 5%
 
-IF   stockout risk (ending inventory below reorder point)  → Reorder immediately
-ELIF overstock OR sell-through rate < 30%                   → Consider promotion or bundle
-ELSE                                                        → Healthy inventory
+IF   coverage < 6 weeks AND A-class   → Reorder immediately
+ELIF coverage < 6 weeks (B/C-class)   → Monitor and reorder soon
+ELIF coverage > 26 weeks              → Consider promotion or bundle
+ELSE                                  → Healthy inventory
 ```
 
 | Inventory Condition | Recommendation | SKUs |
 |--------------------|----------------|-----:|
-| Stockout Risk | Reorder immediately | 1,877 |
-| Overstock / Slow-moving | Consider promotion or bundle | 926 |
-| Healthy Inventory | Healthy inventory | 1,119 |
+| Low coverage, A-class | Reorder immediately | 228 |
+| Low coverage, B/C-class | Monitor and reorder soon | 654 |
+| Overstock (> 26 weeks of coverage) | Consider promotion or bundle | 603 |
+| Healthy (6–26 weeks of coverage) | Healthy inventory | 2,437 |
 | **Total analyzed** | | **3,922** |
 
 By encoding these rules, ~3,900 SKUs are triaged into actionable groups without manual review — demonstrating how analytics can be operationalized into a repeatable decision system rather than a one-time report.
@@ -118,17 +123,17 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 ## Key Insights
 
 - Home decor and kitchen categories generated the highest revenue.
-- Several SKUs showed stockout risk and may require replenishment.
-- Overstocked products were identified for promotional opportunities.
+- Under the simulated stock levels, 228 A-class SKUs fall below the 6-week reorder point and need an immediate reorder.
+- 603 SKUs hold more than 26 weeks of supply and are candidates for promotions or bundles.
 - Product categorization improved category-level business reporting.
 
 ---
 
 ## Business Recommendations
 
-1. Reorder high-demand products with low inventory levels.
-2. Bundle or discount slow-moving inventory.
-3. Monitor sell-through and inventory turnover regularly.
+1. Reorder A-class SKUs with low coverage first.
+2. Bundle or discount overstocked inventory.
+3. Track weeks of coverage every week, so reorders happen before stockouts.
 4. Improve product categorization for more accurate reporting.
 
 ---
@@ -161,8 +166,8 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 |------|-------------|
 | `outputs/monthly_sales.csv` | Monthly revenue and units sold trend |
 | `outputs/category_performance.csv` | Revenue and units by product category (excl. other) |
-| `outputs/slow_moving_skus.csv` | SKUs with sell-through rate below 30% |
-| `outputs/inventory_reorder_recommendations.csv` | Full reorder recommendation table with priority actions |
+| `outputs/slow_moving_skus.csv` | Overstocked SKUs with more than 26 weeks of coverage |
+| `outputs/inventory_reorder_recommendations.csv` | Full recommendation table with ABC class, weeks of coverage, and priority actions |
 
 ---
 
@@ -173,7 +178,7 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 **Dashboard Views:**
 - Monthly revenue trend (line chart)
 - Category revenue breakdown (bar chart)
-- Inventory action summary (reorder / healthy / promotion)
+- Inventory action summary (reorder now / monitor / promotion / healthy)
 - Top 15 slow-moving SKUs by sell-through rate
 
 ---
