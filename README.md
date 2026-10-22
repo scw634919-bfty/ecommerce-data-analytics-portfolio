@@ -36,7 +36,7 @@ Exploratory analysis of transaction-level retail data to surface revenue trends,
 Segments customers into groups such as VIP, Regular, and At-Risk using **Recency, Frequency, and Monetary** scoring, enabling targeted marketing and retention strategies.
 
 ### 3. Inventory Optimization Analysis
-Builds an **inventory decision engine** that sorts **3,922 SKUs** into four actions — Reorder now, Monitor, Promotion/Bundle, or Healthy — using weeks of coverage (a 6-week reorder point and a 26-week overstock line) and **ABC revenue classes**, so the 228 high-revenue SKUs below the reorder point come first. The dataset has no stock levels, so inventory is simulated as weeks of supply. Turns inventory analytics into a repeatable decision workflow instead of a one-time report.
+Builds an **inventory decision engine** that sorts **3,907 SKUs** into four actions — Reorder now, Monitor, Promotion/Bundle, or Healthy — using weeks of coverage (a 6-week reorder point and a 26-week overstock line) and **ABC revenue classes**, so the 238 high-revenue SKUs below the reorder point come first. The dataset has no stock levels, so inventory is simulated as weeks of supply. Turns inventory analytics into a repeatable decision workflow instead of a one-time report.
 
 ### 4. Demand Forecasting
 Aggregates monthly sales and forecasts next-month demand using a **3-month Moving Average** baseline and an **ARIMA** time-series model to support inventory and purchasing decisions.

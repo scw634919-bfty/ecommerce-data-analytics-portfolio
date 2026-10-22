@@ -11,7 +11,7 @@ This project analyzes transaction-level retail sales data to evaluate product pe
 
 Additionally, the project implements a **rule-based inventory decision system** that recommends inventory actions based on stock conditions.
 
-> **Highlight:** The Inventory Decision Assistant translates stock coverage and revenue priority into clear, actionable recommendations across **3,922 SKUs**: **228** high-revenue (A-class) SKUs for immediate reorder, **654** to monitor and reorder soon, **603** for promotion/bundling, and **2,437** as healthy. This shifts inventory planning from reactive manual review to a scalable, rule-based decision workflow that improves operational efficiency.
+> **Highlight:** The Inventory Decision Assistant translates stock coverage and revenue priority into clear, actionable recommendations across **3,907 SKUs**: **238** high-revenue (A-class) SKUs for immediate reorder, **645** to monitor and reorder soon, **602** for promotion/bundling, and **2,422** as healthy. This shifts inventory planning from reactive manual review to a scalable, rule-based decision workflow that improves operational efficiency.
 
 ---
 
@@ -53,6 +53,8 @@ This project aims to answer the following business questions:
 ### 1. Data Cleaning
 
 - Removed invalid transactions (negative quantity and price)
+- Removed non-product lines (postage, carriage, manual adjustments, fees, samples, gift vouchers), so they are not treated as SKUs
+- Removed order lines cancelled in full within 24 hours, which are order-entry mistakes (for example, an 80,995-unit order cancelled 12 minutes later)
 - Standardized column names
 - Created revenue variable
 
@@ -110,11 +112,11 @@ ELSE                                  → Healthy inventory
 
 | Inventory Condition | Recommendation | SKUs |
 |--------------------|----------------|-----:|
-| Low coverage, A-class | Reorder immediately | 228 |
-| Low coverage, B/C-class | Monitor and reorder soon | 654 |
-| Overstock (> 26 weeks of coverage) | Consider promotion or bundle | 603 |
-| Healthy (6–26 weeks of coverage) | Healthy inventory | 2,437 |
-| **Total analyzed** | | **3,922** |
+| Low coverage, A-class | Reorder immediately | 238 |
+| Low coverage, B/C-class | Monitor and reorder soon | 645 |
+| Overstock (> 26 weeks of coverage) | Consider promotion or bundle | 602 |
+| Healthy (6–26 weeks of coverage) | Healthy inventory | 2,422 |
+| **Total analyzed** | | **3,907** |
 
 By encoding these rules, ~3,900 SKUs are triaged into actionable groups without manual review — demonstrating how analytics can be operationalized into a repeatable decision system rather than a one-time report.
 
@@ -123,8 +125,8 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 ## Key Insights
 
 - Home decor and kitchen categories generated the highest revenue.
-- Under the simulated stock levels, 228 A-class SKUs fall below the 6-week reorder point and need an immediate reorder.
-- 603 SKUs hold more than 26 weeks of supply and are candidates for promotions or bundles.
+- Under the simulated stock levels, 238 A-class SKUs fall below the 6-week reorder point and need an immediate reorder.
+- 602 SKUs hold more than 26 weeks of supply and are candidates for promotions or bundles.
 - Product categorization improved category-level business reporting.
 
 ---

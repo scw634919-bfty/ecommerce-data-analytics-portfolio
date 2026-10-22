@@ -37,10 +37,10 @@ Using Python for exploratory data analysis and Tableau for dashboard development
 
 | Metric                    |  Value |
 | ------------------------- | -----: |
-| Total Revenue             |  £8.9M |
-| Total Orders              | 18,532 |
-| Total Customers           |  4,338 |
-| Average Order Value (AOV) | £480.9 |
+| Total Revenue             |  £8.4M |
+| Total Orders              | 18,340 |
+| Total Customers           |  4,333 |
+| Average Order Value (AOV) | £459.7 |
 
 ---
 
@@ -59,6 +59,8 @@ Using Python for exploratory data analysis and Tableau for dashboard development
 
 * Removed missing customer and product records
 * Filtered invalid transactions (`Quantity <= 0`, `UnitPrice <= 0`)
+* Removed non-product lines (postage, carriage, manual adjustments, fees, samples, gift vouchers)
+* Removed order lines cancelled in full within 24 hours, which are order-entry mistakes (for example, an 80,995-unit order cancelled 12 minutes later)
 * Converted invoice dates into datetime format
 
 ### Feature Engineering

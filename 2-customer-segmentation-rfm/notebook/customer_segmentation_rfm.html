@@ -7603,17 +7603,21 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33d1b1ce">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f6b8e474">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="3.-Data-Cleaning">3. Data Cleaning<a class="anchor-link" href="#3.-Data-Cleaning">¶</a></h2><p>Remove rows without a customer ID or product description, plus returns and cancellations (<code>Quantity &lt;= 0</code>) and invalid prices (<code>UnitPrice &lt;= 0</code>). Then parse invoice dates and create a <code>Sales</code> column (<code>Quantity × UnitPrice</code>).</p>
+<h2 id="3.-Data-Cleaning">3. Data Cleaning<a class="anchor-link" href="#3.-Data-Cleaning">¶</a></h2><ol>
+<li>Remove <strong>non-product lines</strong>: postage, carriage, manual adjustments, fees, samples, and gift vouchers.</li>
+<li>Remove <strong>order lines cancelled in full within 24 hours</strong> (same customer, product, and quantity). These are order-entry mistakes, not real sales: for example, an order for 80,995 paper craft sets was cancelled 12 minutes later.</li>
+<li>Remove rows without a customer ID or product description, plus returns and cancellations (<code>Quantity &lt;= 0</code>) and invalid prices (<code>UnitPrice &lt;= 0</code>). Then create a <code>Sales</code> column (<code>Quantity × UnitPrice</code>).</li>
+</ol>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fbd3d592">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8caca661">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7621,12 +7625,97 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Dates look like "12/1/10 8:26" (month/day/two-digit year), so the format is set explicitly</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"InvoiceDate"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"InvoiceDate"</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%y %H:%M"</span><span class="p">)</span>
+
+<span class="c1"># 1) Non-product lines: postage, carriage, manual adjustments, fees, samples, gift vouchers</span>
+<span class="n">NON_PRODUCT_CODES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"DOT"</span><span class="p">,</span> <span class="s2">"C2"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"m"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">,</span> <span class="s2">"S"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"CRUK"</span><span class="p">,</span> <span class="s2">"BANK CHARGES"</span><span class="p">,</span> <span class="s2">"AMAZONFEE"</span><span class="p">]</span>
+<span class="n">codes</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"StockCode"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">is_non_product</span> <span class="o">=</span> <span class="n">codes</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">NON_PRODUCT_CODES</span><span class="p">)</span> <span class="o">|</span> <span class="n">codes</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"gift_"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Non-product lines removed: </span><span class="si">{</span><span class="n">is_non_product</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">is_non_product</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Non-product lines removed: 2,946
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=856f245c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 2) Order lines cancelled in full within 24 hours (same customer, product, and quantity).</span>
+<span class="c1">#    These are order-entry mistakes, not real sales.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_same_day_cancellations</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">invoice</span><span class="p">,</span> <span class="n">customer</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">qty</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">price</span><span class="p">):</span>
+    <span class="n">is_cancel</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">invoice</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"C"</span><span class="p">)</span>
+    <span class="n">purchases</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">is_cancel</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">customer</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">cancels</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">is_cancel</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">customer</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">cancels</span><span class="p">[</span><span class="n">qty</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">cancels</span><span class="p">[</span><span class="n">qty</span><span class="p">]</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">purchases</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cancels</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="n">customer</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">qty</span><span class="p">],</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="s2">"_cancel"</span><span class="p">))</span>
+    <span class="n">pairs</span><span class="p">[</span><span class="s2">"gap"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pairs</span><span class="p">[</span><span class="n">date</span> <span class="o">+</span> <span class="s2">"_cancel"</span><span class="p">]</span> <span class="o">-</span> <span class="n">pairs</span><span class="p">[</span><span class="n">date</span><span class="p">]</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">pairs</span><span class="p">[(</span><span class="n">pairs</span><span class="p">[</span><span class="s2">"gap"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pairs</span><span class="p">[</span><span class="s2">"gap"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">24</span><span class="p">))]</span>
+    <span class="c1"># Match each cancellation to its nearest earlier purchase, one to one</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">pairs</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"gap"</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s2">"index_cancel"</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s2">"index"</span><span class="p">)</span>
+    <span class="n">pairs</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pairs</span><span class="p">[</span><span class="n">qty</span><span class="p">]</span> <span class="o">*</span> <span class="n">pairs</span><span class="p">[</span><span class="n">price</span><span class="p">]</span>
+    <span class="n">pairs</span><span class="p">[</span><span class="s2">"minutes_to_cancel"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pairs</span><span class="p">[</span><span class="s2">"gap"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">//</span> <span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pairs</span><span class="p">[</span><span class="s2">"index"</span><span class="p">]),</span> <span class="n">pairs</span>
+
+
+<span class="n">df</span><span class="p">,</span> <span class="n">cancelled</span> <span class="o">=</span> <span class="n">remove_same_day_cancellations</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">invoice</span><span class="o">=</span><span class="s2">"InvoiceNo"</span><span class="p">,</span> <span class="n">customer</span><span class="o">=</span><span class="s2">"CustomerID"</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="s2">"StockCode"</span><span class="p">,</span>
+    <span class="n">qty</span><span class="o">=</span><span class="s2">"Quantity"</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s2">"InvoiceDate"</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="s2">"UnitPrice"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Order lines cancelled within 24 hours removed: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cancelled</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> (worth £</span><span class="si">{</span><span class="n">cancelled</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cancelled</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">)[[</span><span class="s2">"InvoiceNo"</span><span class="p">,</span> <span class="s2">"Description"</span><span class="p">,</span> <span class="s2">"Quantity"</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">,</span> <span class="s2">"minutes_to_cancel"</span><span class="p">]]</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Order lines cancelled within 24 hours removed: 640 (worth £330,320)
+InvoiceNo                    Description  Quantity    value  minutes_to_cancel
+   581483    PAPER CRAFT , LITTLE BIRDIE     80995 168469.6                 12
+   541431 MEDIUM CERAMIC TOP STORAGE JAR     74215  77183.6                 16
+   556444 PICNIC BASKET WICKER 60 PIECES        60  38970.0                 11
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3d96409b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"CustomerID"</span><span class="p">,</span> <span class="s2">"Description"</span><span class="p">])</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"Quantity"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"UnitPrice"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
-
-<span class="c1"># Dates look like "12/1/10 8:26" (month/day/two-digit year), so the format is set explicitly</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"InvoiceDate"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"InvoiceDate"</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%y %H:%M"</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s2">"Sales"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Quantity"</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">"UnitPrice"</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> rows after cleaning"</span><span class="p">)</span>
 </pre></div>
@@ -7641,7 +7730,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>397,884 rows after cleaning
+<pre>395,700 rows after cleaning
 </pre>
 </div>
 </div>
@@ -7668,7 +7757,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Snapshot date: the day after the last invoice</span>
@@ -7683,7 +7772,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># RFM table</span>
@@ -7715,7 +7804,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">rfm</span><span class="p">[</span><span class="s2">"R_score"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">rfm</span><span class="p">[</span><span class="s2">"Recency"</span><span class="p">],</span> <span class="mi">4</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -7753,7 +7842,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">segment_customer</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
@@ -7779,18 +7868,18 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>   CustomerID  Recency  Frequency  Monetary R_score F_score M_score RFM_Score  \
-0     12346.0      326          1  77183.60       1       1       4       114   
-1     12347.0        2          7   4310.00       4       4       4       444   
-2     12348.0       75          4   1797.24       2       3       4       234   
-3     12349.0       19          1   1757.55       3       1       4       314   
-4     12350.0      310          1    334.40       1       1       2       112   
+0     12347.0        2          7   4310.00       4       4       4       444   
+1     12348.0       75          4   1437.24       2       3       3       233   
+2     12349.0       19          1   1457.55       3       1       3       313   
+3     12350.0      310          1    294.40       1       1       1       111   
+4     12352.0       36          7   1385.74       3       4       3       343   
 
    Segment  
-0  At Risk  
-1      VIP  
-2  At Risk  
-3  Regular  
-4  At Risk  
+0      VIP  
+1  At Risk  
+2  Regular  
+3  At Risk  
+4  Regular  
 </pre>
 </div>
 </div>
@@ -7812,7 +7901,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Segment-level summary (count, average RFM, total revenue)</span>
@@ -7844,20 +7933,20 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>   Segment  customer_count  avg_recency  avg_frequency  avg_monetary  \
-0  At Risk            2150       166.33           2.13        840.97   
-1  Regular            1311        24.48           2.57        914.40   
-2      VIP             877        13.37          12.07       6732.67   
+0  At Risk            2153       166.41           2.11        770.93   
+1  Regular            1308        24.40           2.56        764.82   
+2      VIP             872        13.40          11.98       6617.60   
 
    total_revenue  
-0     1808079.53  
-1     1198773.21  
-2     5904555.16  
+0     1659813.29  
+1     1000383.30  
+2     5770549.80  
 
          % of customers  % of revenue
 Segment                              
-At Risk            49.6          20.3
-Regular            30.2          13.5
-VIP                20.2          66.3
+At Risk            49.7          19.7
+Regular            30.2          11.9
+VIP                20.1          68.4
 </pre>
 </div>
 </div>
@@ -7872,9 +7961,9 @@ VIP                20.2          66.3
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="8.-Key-Insights-&amp;-Business-Recommendations">8. Key Insights &amp; Business Recommendations<a class="anchor-link" href="#8.-Key-Insights-&amp;-Business-Recommendations">¶</a></h2><p><strong>Key insights</strong></p>
 <ul>
-<li><strong>VIP</strong> customers are about <strong>20%</strong> of customers (877) but bring in about <strong>66%</strong> of revenue (£5.90M). On average they last bought 13 days before the snapshot date and placed about 12 orders.</li>
-<li><strong>At Risk</strong> is the largest group: about <strong>50%</strong> of customers (2,150), with an average of 166 days since their last purchase. They still account for about <strong>20%</strong> of revenue (£1.81M), so winning some of them back is worth the effort.</li>
-<li><strong>Regular</strong> customers (1,311) bought recently (24 days on average) but only about 2.6 times, so there is room to raise their purchase frequency.</li>
+<li><strong>VIP</strong> customers are about <strong>20%</strong> of customers (872) but bring in about <strong>68%</strong> of revenue (£5.77M). On average they last bought 13 days before the snapshot date and placed about 12 orders.</li>
+<li><strong>At Risk</strong> is the largest group: about <strong>50%</strong> of customers (2,153), with an average of 166 days since their last purchase. They still account for about <strong>20%</strong> of revenue (£1.66M), so winning some of them back is worth the effort.</li>
+<li><strong>Regular</strong> customers (1,308) bought recently (24 days on average) but only about 2.6 times, so there is room to raise their purchase frequency.</li>
 </ul>
 <p><strong>Business recommendations</strong></p>
 <ul>
@@ -7901,7 +7990,7 @@ VIP                20.2          66.3
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Save CSVs in the project's outputs folder:</span>
@@ -7932,7 +8021,7 @@ VIP                20.2          66.3
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Saved to ../outputs/:
-  rfm_segments.csv - 4338 customers
+  rfm_segments.csv - 4333 customers
   segment_summary.csv - 3 segments
 </pre>
 </div>

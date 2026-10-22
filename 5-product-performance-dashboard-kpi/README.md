@@ -106,6 +106,8 @@ Dashboard Visualization
 The following preprocessing steps were applied:
 
 -   Converted column names to lowercase
+-   Removed non-product lines (postage, carriage, manual adjustments, fees, samples, gift vouchers)
+-   Removed order lines cancelled in full within 24 hours, which are order-entry mistakes
 -   Removed missing customer IDs and product descriptions
 -   Removed cancellations / returns and invalid records (`quantity <= 0`, `unit_price <= 0`)
 -   Converted order date to datetime format
@@ -138,10 +140,10 @@ Example:
 
 | Metric                    |   Value |
 | ------------------------- | ------: |
-| Total Revenue             |  £8.91M |
-| Total Orders              |  18,532 |
-| Total Customers           |   4,338 |
-| Average Order Value (AOV) | £480.87 |
+| Total Revenue             |  £8.43M |
+| Total Orders              |  18,340 |
+| Total Customers           |   4,333 |
+| Average Order Value (AOV) | £459.69 |
 
 > Customers and orders are **distinct counts** over the full dataset. They are
 > not summed from the monthly table (a repeat buyer would otherwise be counted
@@ -196,7 +198,7 @@ transformed into business insights by:
 
 | File | Description |
 |------|-------------|
-| `outputs/kpi_summary.csv` | Overall KPI totals — Total Revenue (£8.91M), Total Orders (18,532), Total Customers (4,338), Units Sold, AOV (£480.87). Distinct counts; used for the KPI cards |
+| `outputs/kpi_summary.csv` | Overall KPI totals — Total Revenue (£8.43M), Total Orders (18,340), Total Customers (4,333), Units Sold, AOV (£459.69). Distinct counts; used for the KPI cards |
 | `outputs/monthly_kpi.csv` | Monthly revenue, orders, customers, units sold, and AOV (13 months) |
 | `outputs/category_kpi.csv` | Revenue, orders, and units sold by product category |
 | `outputs/category_performance.csv` | Category revenue, units sold, SKU count, and revenue % (excl. other; used in dashboard) |

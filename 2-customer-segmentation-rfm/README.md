@@ -90,6 +90,8 @@ The dataset was cleaned before analysis by removing:
 - Rows with missing `Description`
 - Orders with `Quantity <= 0`
 - Orders with `UnitPrice <= 0`
+- Non-product lines such as postage, carriage, manual adjustments, and fees
+- Order lines cancelled in full within 24 hours, which are order-entry mistakes (for example, an 80,995-unit order cancelled 12 minutes later)
 
 This helps remove incomplete records, canceled orders, returns, and invalid transaction values.
 
@@ -246,7 +248,7 @@ Based on the RFM segmentation, the business can take the following actions:
 
 | File | Description |
 |------|-------------|
-| `outputs/rfm_segments.csv` | Full RFM table with scores and segment labels (4,338 customers) |
+| `outputs/rfm_segments.csv` | Full RFM table with scores and segment labels (4,333 customers) |
 | `outputs/segment_summary.csv` | Segment-level aggregates: count, avg RFM metrics, total revenue |
 | `outputs/rfm_details.csv` | Detailed RFM metrics per customer for Tableau scatter plots |
 
@@ -268,9 +270,9 @@ Based on the RFM segmentation, the business can take the following actions:
 
 | Segment | Customers | Avg Monetary | Total Revenue |
 |---------|-----------|--------------|---------------|
-| VIP | 877 | £6,732.67 | £5,904,555 |
-| Regular | 1,311 | £914.40 | £1,198,773 |
-| At Risk | 2,150 | £840.97 | £1,808,080 |
+| VIP | 872 | £6,617.60 | £5,770,550 |
+| Regular | 1,308 | £764.82 | £1,000,383 |
+| At Risk | 2,153 | £770.93 | £1,659,813 |
 
 ---
 

@@ -41,7 +41,7 @@ Key fields used in this project include:
 The dataset was loaded from an Excel file and reviewed in Python using Pandas.
 
 ### 2. Data Cleaning
-The column names were standardized by removing extra spaces and converting them to lowercase. Invalid transaction rows were removed, including rows with negative or zero quantity and unit price.
+The column names were standardized by removing extra spaces and converting them to lowercase. Invalid transaction rows were removed, including rows with negative or zero quantity and unit price. Non-product lines (postage, carriage, manual adjustments, fees) and order lines cancelled in full within 24 hours (order-entry mistakes) were also removed.
 
 ### 3. Feature Engineering
 A new `sales` column was created by multiplying quantity by unit price.
@@ -70,12 +70,12 @@ An ARIMA model was used to capture time-series patterns and forecast the next mo
 
 | Forecasting Method | Next-Month Sales Forecast |
 |---|---:|
-| 3-Month Moving Average | 1,241,021.93 |
-| ARIMA | 1,461,941.30 |
+| 3-Month Moving Average | 1,189,408.91 |
+| ARIMA | 1,381,106.14 |
 
 The ARIMA model produced a higher next-month forecast than the moving average model, suggesting that the model captured stronger upward movement or recent trend changes in the time series.
 
-**Business interpretation:** ARIMA reacts to the recent upward trend that the 3-month Moving Average smooths out, so the gap between the two forecasts (~£221K) is effectively a measure of recent momentum. This makes the choice of model a strategic decision rather than a purely technical one:
+**Business interpretation:** ARIMA reacts to the recent upward trend that the 3-month Moving Average smooths out, so the gap between the two forecasts (~£192K) is effectively a measure of recent momentum. This makes the choice of model a strategic decision rather than a purely technical one:
 
 - Use the **Moving Average** forecast for **conservative inventory planning**, when minimizing overstock risk and holding costs is the priority.
 - Use the **ARIMA** forecast for **aggressive, growth-oriented planning**, when the business expects continued momentum and wants to avoid stockouts during demand spikes.
@@ -88,12 +88,12 @@ The next-month figures above are projections; to measure accuracy, the last **3 
 
 | Model | MAPE | RMSE | MAE |
 |---|---:|---:|---:|
-| 3-Month Moving Average | 30.20% | 392,386 | 379,938 |
-| ARIMA(1,1,1) | 23.65% | 303,231 | 293,271 |
+| 3-Month Moving Average | 30.66% | 381,034 | 369,087 |
+| ARIMA(1,1,1) | 24.64% | 307,012 | 294,192 |
 
-**ARIMA beat the baseline on all three metrics — MAPE −21.7%, RMSE −22.7%, MAE −22.8%.**
+**ARIMA beat the baseline on all three metrics — MAPE −19.6%, RMSE −19.4%, MAE −20.3%.**
 
-> **Honest caveat:** only 12 complete monthly data points exist (9 train / 3 test), so this is illustrative rather than statistically robust. ARIMA's edge comes largely from capturing the upward trend in the holdout window that a trailing moving average lags behind; both models still have high absolute error (~24–30% MAPE). Weekly/daily aggregation would yield far more points and a sturdier estimate.
+> **Honest caveat:** only 12 complete monthly data points exist (9 train / 3 test), so this is illustrative rather than statistically robust. ARIMA's edge comes largely from capturing the upward trend in the holdout window that a trailing moving average lags behind; both models still have high absolute error (~25–31% MAPE). Weekly/daily aggregation would yield far more points and a sturdier estimate.
 
 ## Key Insights
 - Monthly sales data provides a clearer view of demand trends than individual transaction-level data.
@@ -137,7 +137,7 @@ This project demonstrates a practical demand forecasting workflow using historic
 | File | Description |
 |------|-------------|
 | `outputs/monthly_sales.csv` | Monthly sales with 3-month moving average (12 months) |
-| `outputs/forecast_comparison.csv` | Next-month forecast: MA (£1.24M) vs ARIMA (£1.46M) |
+| `outputs/forecast_comparison.csv` | Next-month forecast: MA (£1.19M) vs ARIMA (£1.38M) |
 
 ---
 
