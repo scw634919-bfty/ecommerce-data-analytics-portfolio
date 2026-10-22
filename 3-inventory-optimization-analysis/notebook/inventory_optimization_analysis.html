@@ -7552,7 +7552,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
@@ -7570,7 +7572,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-Load-Data">2. Load Data<a class="anchor-link" href="#2.-Load-Data">¶</a></h2><p>The dataset is loaded from an Excel file. If you use a CSV file instead, replace <code>pd.read_excel()</code> with <code>pd.read_csv()</code>.</p>
+<h2 id="2.-Load-Data">2. Load Data<a class="anchor-link" href="#2.-Load-Data">¶</a></h2><p>The data is the UCI Online Retail dataset (a UK online retailer, December 2010 – December 2011), loaded from an Excel file. See <code>data/README.md</code> for where to download it. If you use a CSV file instead, replace <code>pd.read_excel()</code> with <code>pd.read_csv()</code>.</p>
 </div>
 </div>
 </div>
@@ -7582,8 +7584,11 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load the transaction dataset</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"Online Retail.xlsx"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Data file location: ../data in the GitHub layout (notebook/ folder), the project folder locally</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="s2">"../data"</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="o">==</span> <span class="s2">"notebook"</span> <span class="k">else</span> <span class="s2">"."</span>
+
+<span class="c1"># Load the transaction dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"Online Retail.xlsx"</span><span class="p">))</span>
 
 <span class="c1"># Preview the dataset</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>

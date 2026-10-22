@@ -144,7 +144,7 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 3-inventory-optimization-analysis/
 │
 ├── data/
-│   └── Online Retail.xlsx
+│   └── README.md  (download instructions)
 │
 ├── notebook/
 │   └── inventory_optimization_analysis.ipynb

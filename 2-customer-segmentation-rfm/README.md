@@ -224,7 +224,7 @@ Based on the RFM segmentation, the business can take the following actions:
 2-customer-segmentation-rfm/
 │
 ├── data/
-│   └── online_retail.csv
+│   └── README.md  (download instructions)
 │
 ├── notebook/
 │   └── customer_segmentation_rfm.ipynb

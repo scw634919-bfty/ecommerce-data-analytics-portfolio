@@ -92,7 +92,7 @@ Using Python for exploratory data analysis and Tableau for dashboard development
 1-ecommerce-sales-performance-analysis/
 │
 ├── data/
-│   └── Online Retail.xlsx
+│   └── README.md  (download instructions)
 │
 ├── notebook/
 │   └── ecommerce_sales_performance_analysis.ipynb

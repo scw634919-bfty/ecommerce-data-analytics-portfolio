@@ -62,12 +62,13 @@ sold - Unit price - Customer IDs - Order timestamps
 5-product-performance-dashboard-kpi/
 │
 ├── data/
-│   └── Online Retail.xlsx
+│   └── README.md  (download instructions)
 │
 ├── notebook/
 │   └── product_performance_dashboard_kpi.ipynb
 │
 ├── outputs/
+│   ├── kpi_summary.csv
 │   ├── monthly_kpi.csv
 │   ├── category_kpi.csv
 │   └── category_performance.csv
@@ -201,7 +202,8 @@ transformed into business insights by:
 | `outputs/category_performance.csv` | Category revenue, units sold, SKU count, and revenue % (excl. other; used in dashboard) |
 
 > **Tableau source:** `cleaned_kpi_data.csv` (row-level cleaned transactions) is
-> written next to the notebook so the KPI cards can compute
+> written to `outputs/` (not stored on GitHub because of its size; re-run the
+> notebook to create it) so the KPI cards can compute
 > `COUNTD(customer_id)` / `COUNTD(order_id)` correctly instead of summing
 > pre-aggregated monthly counts.
 

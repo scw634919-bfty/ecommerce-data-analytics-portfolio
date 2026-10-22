@@ -101,19 +101,19 @@ This step helps identify available variables such as country, product category, 
 
 ### 3. Data Cleaning
 
-The analysis selects key features and removes rows with missing values in those columns.
+The analysis keeps the columns it needs and removes rows with missing values in them.
 
-Selected features include:
+Columns used:
 
 - Country
 - Main product category
 - Color
 - Product location
-- Price
+- Price (used only to build the target)
 
 ```python
-features = ["country", "page 1 (main category)", "colour", "location", "price"]
-df = df.dropna(subset=features)
+analysis_cols = ["country", "page 1 (main category)", "colour", "location", "price"]
+df = df.dropna(subset=analysis_cols)
 ```
 
 ---
@@ -137,18 +137,14 @@ Because this clickstream dataset contains no explicit purchase/conversion event,
 
 ### 5. Machine Learning Pipeline
 
-The notebook separates categorical and numerical features.
-
-Categorical features:
+The model uses four categorical features, all one-hot encoded:
 
 - Country
 - Main category
 - Color
-- Location
+- Location (photo position on the page)
 
-Numerical feature:
-
-- Price
+`price` is **not** a feature. The target is built from price, so including it would leak the answer to the model (target leakage) and give a perfect but meaningless score.
 
 A machine learning pipeline is created using:
 
@@ -187,6 +183,15 @@ The report includes:
 - F1-score
 - Accuracy
 
+**Results on the test set (33,095 clicks):**
+
+| Model | Accuracy |
+|---|---:|
+| Baseline: always predict "standard" | 0.60 |
+| Random Forest (country, category, color, location) | 0.87 |
+
+For the premium tier, precision is 0.83 and recall is 0.84.
+
 ---
 
 ### 7. Exploratory Data Analysis
@@ -205,10 +210,10 @@ This helps identify which colors are associated with higher average prices.
 
 Based on the current analysis:
 
-- Product attributes such as color and price can be used to explore customer behavior patterns.
-- Some colors are associated with higher average product prices.
-- Clickstream variables can be transformed into features for predictive modeling.
-- A machine learning pipeline can be built using categorical and numerical product data.
+- **Poland** accounts for about 81.5% of sessions (19,582 of 24,026), so traffic is concentrated in one market.
+- **Skirts** are the most premium category: 68% of skirt clicks are on above-median prices, compared with 9% in the sale section.
+- **Olive, red, and blue** products have the highest average prices (about $49–52).
+- Without using price, the model predicts the premium tier with 87% accuracy vs. a 60% baseline, so category, color, page location, and country together carry a strong price signal.
 
 ---
 
@@ -249,7 +254,7 @@ Examples of stronger target variables for that version:
 6-clickstream-analysis-conversion-insights/
 │
 ├── data/
-│   └── e-shop clothing 2008.csv
+│   └── README.md  (download instructions)
 │
 ├── notebook/
 │   └── clickstream_analysis_conversion_insights.ipynb

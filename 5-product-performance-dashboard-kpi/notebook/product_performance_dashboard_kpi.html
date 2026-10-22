@@ -7511,7 +7511,7 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=colab-badge">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93ea4369">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7522,7 +7522,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ddc788ba-1673-4531-b912-acca3e1ceea9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=175a4abe">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7534,17 +7534,17 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c0103527">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=63dc613e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="1.-Import-Libraries">1. Import Libraries<a class="anchor-link" href="#1.-Import-Libraries">¶</a></h2><p>Import libraries for data analysis, KPI tracking, and visualization.</p>
+<h2 id="1.-Import-Libraries">1. Import Libraries<a class="anchor-link" href="#1.-Import-Libraries">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=cf5d5a70-46dc-4e6f-be16-e244f88c60a9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9330c156">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7552,32 +7552,73 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="c1"># 1. Load data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"Online Retail.xlsx"</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7ce874ba">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=de7a9682">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-Load-Dataset">2. Load Dataset<a class="anchor-link" href="#2.-Load-Dataset">¶</a></h2><p>Load product and sales-related data and inspect the dataset structure.</p>
+<h2 id="2.-Load-Dataset">2. Load Dataset<a class="anchor-link" href="#2.-Load-Dataset">¶</a></h2><p>The data is the UCI Online Retail dataset (a UK online retailer, December 2010 – December 2011). See <code>data/README.md</code> for where to download it.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a4459490-7cce-4ebb-afc2-2ef1a12a6024">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4a5e3aaa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Data file location: ../data in the GitHub layout (notebook/ folder), the project folder locally</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="s2">"../data"</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="o">==</span> <span class="s2">"notebook"</span> <span class="k">else</span> <span class="s2">"."</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">"Online Retail.xlsx"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> rows, </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> columns"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>541,909 rows, 8 columns
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2f4833fc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="3.-Data-Cleaning">3. Data Cleaning<a class="anchor-link" href="#3.-Data-Cleaning">¶</a></h2><p>The same cleaning as Project 1: remove rows without a customer ID or description, plus returns, cancellations, and invalid prices. Then parse dates, build the revenue column, and rename columns for the KPI layer.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0f519f8a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Data cleaning (aligned with the portfolio-standard cleaning used in Project 1)</span>
@@ -7603,28 +7644,42 @@ a.anchor-link {
     <span class="s2">"stockcode"</span><span class="p">:</span> <span class="s2">"product_id"</span><span class="p">,</span>
     <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"product_name"</span>
 <span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> rows after cleaning"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ea66e5f1">
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>397,884 rows after cleaning
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b9c51d5e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="3.-Data-Cleaning">3. Data Cleaning<a class="anchor-link" href="#3.-Data-Cleaning">¶</a></h2><p>Clean missing values and prepare the dataset for KPI analysis.</p>
+<h2 id="4.-Product-Categorization">4. Product Categorization<a class="anchor-link" href="#4.-Product-Categorization">¶</a></h2><p>The dataset has no product categories, so each product gets a category from keywords in its description (the same rules as Project 3).</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3ea2d189-7ade-4ed0-9fe1-ad71cb1e1714">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d35d416d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Keyword-based product categorization (consistent with Project 3's scheme)</span>
@@ -7679,22 +7734,22 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9777bf60">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59344194">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="4.-Exploratory-Data-Analysis-(EDA)">4. Exploratory Data Analysis (EDA)<a class="anchor-link" href="#4.-Exploratory-Data-Analysis-(EDA)">¶</a></h2><p>Explore product performance, sales behavior, and business metrics.</p>
+<h2 id="5.-Monthly-KPIs-&amp;-Overall-KPI-Summary">5. Monthly KPIs &amp; Overall KPI Summary<a class="anchor-link" href="#5.-Monthly-KPIs-&amp;-Overall-KPI-Summary">¶</a></h2><p>Monthly revenue, orders, customers, units, and average order value (AOV) for the trend line, plus one row of overall totals for the KPI cards.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e5b3aede-c92b-41b2-9c38-a56819accc34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0bd3c104">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Monthly KPI (used for the dashboard's monthly trend line)</span>
@@ -7768,22 +7823,22 @@ Overall KPI Summary
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0dfe45d0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a17e8f40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="5.-KPI-Analysis">5. KPI Analysis<a class="anchor-link" href="#5.-KPI-Analysis">¶</a></h2><p>Calculate key performance indicators to evaluate product performance.</p>
+<h2 id="6.-Category-KPIs">6. Category KPIs<a class="anchor-link" href="#6.-Category-KPIs">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a05e380f-bf5d-497f-8665-534a8ac3348d">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2b0ddcbf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Category KPI (revenue / orders / units by product category)</span>
@@ -7837,7 +7892,13 @@ Overall KPI Summary
 7       stationery   286178.240    4079      256468
 1  gift/decorative   270192.910    6545      368711
 5         seasonal   193258.820    3898      143041
-
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
 Category Performance (excl. other)
           category  total_units_sold  total_revenue  sku_count  revenue_pct
 2       home decor           2049771     3666701.33       1341        49.19
@@ -7853,26 +7914,52 @@ Category Performance (excl. other)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0e193e46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1231fb15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="6.-Dashboard-Development">6. Dashboard Development<a class="anchor-link" href="#6.-Dashboard-Development">¶</a></h2><p>Build dashboard metrics and summarize product performance trends.</p>
+<h2 id="7.-Key-Insights-&amp;-Business-Recommendations">7. Key Insights &amp; Business Recommendations<a class="anchor-link" href="#7.-Key-Insights-&amp;-Business-Recommendations">¶</a></h2><p><strong>Key insights</strong></p>
+<ul>
+<li>Total revenue is about <strong>£8.91M</strong> from <strong>18,532 orders</strong> and <strong>4,338 customers</strong>, an average order value (AOV) of about <strong>£481</strong>.</li>
+<li>Revenue peaks in <strong>November 2011 (£1.16M from 2,657 orders)</strong>. December 2011 looks low only because the data ends on December 9.</li>
+<li><strong>Home decor</strong> (49%) and <strong>kitchen</strong> (25%) make up about <strong>three-quarters</strong> of categorized revenue, and bags add another 10%.</li>
+<li>About <strong>£1.46M (16%)</strong> of revenue falls into "other", so the keyword rules could classify more products.</li>
+</ul>
+<p><strong>Business recommendations</strong></p>
+<ul>
+<li>Prioritize home decor and kitchen in inventory and marketing plans, especially before the fall peak.</li>
+<li>Extend the keyword rules so fewer products land in "other".</li>
+<li>Track the KPI cards and the monthly trend every month.</li>
+</ul>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28bbbab3-254c-41ae-b2c3-8cc9bd3ede69">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a182b839">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="8.-Export-CSVs-for-Tableau-Dashboard">8. Export CSVs for Tableau Dashboard<a class="anchor-link" href="#8.-Export-CSVs-for-Tableau-Dashboard">¶</a></h2><p>All files are saved in the project's <code>outputs/</code> folder. <code>cleaned_kpi_data.csv</code> (row-level cleaned transactions) is the Tableau source, so the KPI cards can compute <code>COUNTD(customer_id)</code> / <code>COUNTD(order_id)</code> correctly. It is not stored on GitHub because of its size.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a266240e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">"../outputs"</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Save CSVs in the project's outputs folder:</span>
+<span class="c1"># "../outputs" when the notebook sits in a notebook/ folder (GitHub layout),</span>
+<span class="c1"># "outputs" when it sits in the project folder itself (local layout)</span>
+<span class="n">output_dir</span> <span class="o">=</span> <span class="s2">"../outputs"</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="o">==</span> <span class="s2">"notebook"</span> <span class="k">else</span> <span class="s2">"outputs"</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Row-level cleaned dataset — use this as the Tableau source so the KPI</span>
 <span class="c1"># cards can compute COUNTD(customer_id) / COUNTD(order_id) correctly.</span>
@@ -7881,25 +7968,20 @@ Category Performance (excl. other)
     <span class="s2">"product_id"</span><span class="p">,</span> <span class="s2">"product_name"</span><span class="p">,</span> <span class="s2">"category"</span><span class="p">,</span>
     <span class="s2">"quantity"</span><span class="p">,</span> <span class="s2">"unit_price"</span><span class="p">,</span> <span class="s2">"sales"</span><span class="p">,</span> <span class="s2">"country"</span>
 <span class="p">]</span>
-<span class="n">df</span><span class="p">[</span><span class="n">cleaned_cols</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"cleaned_kpi_data.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">cleaned_cols</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s2">"cleaned_kpi_data.csv"</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Aggregated tables for the dashboard</span>
-<span class="n">kpi_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/kpi_summary.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">monthly_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/monthly_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">category_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/category_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">category_performance</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"../outputs/category_performance.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">kpi_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s2">"kpi_summary.csv"</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">monthly_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s2">"monthly_kpi.csv"</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">category_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s2">"category_kpi.csv"</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">category_performance</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s2">"category_performance.csv"</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># Convenience copies next to the notebook</span>
-<span class="n">kpi_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"kpi_summary.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">monthly_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"monthly_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">category_kpi</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"category_kpi.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Saved:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Saved to </span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s2">/:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"  cleaned_kpi_data.csv -"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"rows (Tableau source)"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  ../outputs/kpi_summary.csv - overall KPI totals"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  ../outputs/monthly_kpi.csv -"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_kpi</span><span class="p">),</span> <span class="s2">"months"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  ../outputs/category_kpi.csv -"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">category_kpi</span><span class="p">),</span> <span class="s2">"categories"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"  ../outputs/category_performance.csv -"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">category_performance</span><span class="p">),</span> <span class="s2">"categories (excl. other)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  kpi_summary.csv - overall KPI totals"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  monthly_kpi.csv -"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">monthly_kpi</span><span class="p">),</span> <span class="s2">"months"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  category_kpi.csv -"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">category_kpi</span><span class="p">),</span> <span class="s2">"categories"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"  category_performance.csv -"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">category_performance</span><span class="p">),</span> <span class="s2">"categories (excl. other)"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7912,38 +7994,13 @@ Category Performance (excl. other)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Saved:
+<pre>Saved to ../outputs/:
   cleaned_kpi_data.csv - 397,884 rows (Tableau source)
-  ../outputs/kpi_summary.csv - overall KPI totals
-  ../outputs/monthly_kpi.csv - 13 months
-  ../outputs/category_kpi.csv - 8 categories
-  ../outputs/category_performance.csv - 7 categories (excl. other)
+  kpi_summary.csv - overall KPI totals
+  monthly_kpi.csv - 13 months
+  category_kpi.csv - 8 categories
+  category_performance.csv - 7 categories (excl. other)
 </pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83d67abf">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="7.-Visualization-&amp;-Key-Insights">7. Visualization &amp; Key Insights<a class="anchor-link" href="#7.-Visualization-&amp;-Key-Insights">¶</a></h2><p>Visualize KPI results and summarize important findings.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d710d597-ee25-4f85-bd2f-9b70f482e011">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
 </div>
 </div>
 </div>

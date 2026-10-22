@@ -36,7 +36,7 @@ Exploratory analysis of transaction-level retail data to surface revenue trends,
 Segments customers into groups such as VIP, Regular, and At-Risk using **Recency, Frequency, and Monetary** scoring, enabling targeted marketing and retention strategies.
 
 ### 3. Inventory Optimization Analysis
-Simulates an **automated inventory decision engine** that triages **3,922 SKUs** into actionable groups — Reorder, Promotion/Bundle, or Maintain — using demand-driven rules (reorder point, sell-through, overstock). Turns inventory analytics into a repeatable decision workflow instead of a one-time report.
+Builds an **inventory decision engine** that sorts **3,922 SKUs** into four actions — Reorder now, Monitor, Promotion/Bundle, or Healthy — using weeks of coverage (a 6-week reorder point and a 26-week overstock line) and **ABC revenue classes**, so the 228 high-revenue SKUs below the reorder point come first. The dataset has no stock levels, so inventory is simulated as weeks of supply. Turns inventory analytics into a repeatable decision workflow instead of a one-time report.
 
 ### 4. Demand Forecasting
 Aggregates monthly sales and forecasts next-month demand using a **3-month Moving Average** baseline and an **ARIMA** time-series model to support inventory and purchasing decisions.
@@ -51,7 +51,7 @@ Analyzes online clothing clickstream behavior across categories, colors, countri
 
 ## Dataset
 
-Most projects use the **Online Retail dataset** (UK-based online retailer, UCI / Kaggle). The clickstream project (#6) uses the **e-shop clothing 2008** dataset. Raw data files are stored in each project's `data/` folder.
+Most projects use the **Online Retail dataset** (UK-based online retailer, UCI / Kaggle). The clickstream project (#6) uses the **e-shop clothing 2008** dataset. Raw data files are not stored in the repo: each project's `data/README.md` links to the source and shows where to put the file.
 
 ---
 

@@ -84,7 +84,7 @@ In practice, the two forecasts can serve as a **lower and upper bound** for purc
 
 ## Model Accuracy (Holdout Evaluation)
 
-The next-month figures above are projections; to measure accuracy, the last **3 months** (Sep–Nov 2011) were held out as a test set and both models were scored with walk-forward one-step-ahead forecasts. *(See section 11 of the notebook to reproduce — nothing is hardcoded.)*
+The next-month figures above are projections; to measure accuracy, the last **3 months** (Sep–Nov 2011) were held out as a test set and both models were scored with walk-forward one-step-ahead forecasts. *(See section 8 of the notebook to reproduce — nothing is hardcoded.)*
 
 | Model | MAPE | RMSE | MAE |
 |---|---:|---:|---:|
@@ -118,7 +118,7 @@ This project demonstrates a practical demand forecasting workflow using historic
 4-demand-forecasting/
 │
 ├── data/
-│   └── Online Retail.xlsx
+│   └── README.md  (download instructions)
 │
 ├── notebook/
 │   └── demand_forecasting.ipynb
