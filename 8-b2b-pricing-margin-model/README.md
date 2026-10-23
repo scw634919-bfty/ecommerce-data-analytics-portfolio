@@ -12,6 +12,12 @@ The business sells laptops, monitors and accessories to companies in 5 countries
 
 **Tools:** Excel (formula-driven model, ~37,000 formulas, no hardcoded results), SQL (SQLite, standard SQL with window functions), Python (pandas, to generate data and cross-check every Excel total).
 
+### Dashboard (mockup)
+
+![B2B margin dashboard mockup](images/dashboard_mockup.png)
+
+*A mockup of the planned Power BI report, drawn from the model's numbers with `make_dashboard_mockup.py`. It is a static image, not a Power BI file. The live version (DAX measures on the same order data, with region / category / rep / month slicers) is the next step.*
+
 ---
 
 ## What's inside
@@ -23,6 +29,7 @@ The business sells laptops, monitors and accessories to companies in 5 countries
 | `sql/query_output.txt` | Output of every query |
 | `data/*.csv` | Simulated regions, categories, 30 SKUs, 150-row price book, 1,961 order lines (Oct 2025 – Sep 2026) |
 | `generate_data.py`, `build_model.py`, `verify.py` | Rebuild the data and workbook; check Excel totals against pandas |
+| `make_dashboard_mockup.py`, `images/dashboard_mockup.png` | Draws the dashboard mockup from the workbook's numbers |
 
 ### Workbook sheets
 
@@ -114,6 +121,7 @@ python3 generate_data.py        # simulated CSVs → data/
 python3 build_model.py          # builds the workbook (Excel recalculates on open)
 bash sql/run_sql.sh             # loads SQLite and runs every query
 python3 verify.py B2B_Pricing_Margin_Model.xlsx   # after opening + saving in Excel: checks totals vs pandas
+python3 make_dashboard_mockup.py                  # redraws images/dashboard_mockup.png
 ```
 
 ## Limitations
