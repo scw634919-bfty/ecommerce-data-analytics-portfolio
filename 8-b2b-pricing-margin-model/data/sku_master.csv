@@ -1,0 +1,31 @@
+sku,oem,model,category,tier,lifecycle,vendor_cost_usd,base_rebate_pct
+L01,Apple,MacBook Air 13 M3 16GB/512GB,Laptop,Mainstream,Active,1180,0.01
+L02,Apple,MacBook Pro 14 M3 Pro 18GB/512GB,Laptop,Premium,Active,1780,0.01
+L03,Apple,MacBook Pro 16 M3 Max 36GB/1TB,Laptop,Premium,Active,2950,0.01
+L04,Dell,Latitude 5450 i5/16GB/512GB,Laptop,Mainstream,Active,980,0.03
+L05,Dell,Latitude 7450 i7/16GB/512GB,Laptop,Premium,Active,1320,0.03
+L06,Dell,XPS 13 9340 Ultra 7/16GB/512GB,Laptop,Premium,Active,1150,0.02
+L07,Lenovo,ThinkPad T14 Gen 5 i5/16GB/512GB,Laptop,Mainstream,Active,1010,0.035
+L08,Lenovo,ThinkPad X1 Carbon Gen 12 i7/32GB/1TB,Laptop,Premium,Active,1520,0.035
+L09,Lenovo,ThinkPad E14 Gen 6 i5/16GB/256GB,Laptop,Entry,Active,720,0.02
+L10,HP,EliteBook 840 G11 Ultra 5/16GB/512GB,Laptop,Mainstream,Active,1180,0.03
+L11,HP,ProBook 450 G10 i5/16GB/256GB,Laptop,Entry,Active,780,0.02
+L12,Microsoft,Surface Laptop 6 Ultra 5/16GB/256GB,Laptop,Premium,Active,1250,0.015
+L13,Acer,TravelMate P4 i5/16GB/512GB,Laptop,Mainstream,Active,890,0.0
+L14,ASUS,ExpertBook B5 i5/16GB/512GB,Laptop,Mainstream,Active,940,0.0
+L15,Dell,Latitude 5440 i5/16GB/512GB (prev. gen),Laptop,Mainstream,EOL,900,0.03
+M01,Dell,P2425H 24in FHD,Monitor,24in,Active,165,0.02
+M02,Dell,U2724D 27in QHD,Monitor,27in,Active,340,0.02
+M03,LG,27UP850-W 27in 4K,Monitor,27in,Active,330,0.01
+M04,Lenovo,ThinkVision T27h-30 27in QHD,Monitor,27in,Active,270,0.02
+M05,HP,E24 G5 24in FHD,Monitor,24in,Active,160,0.02
+M06,Samsung,ViewFinity S6 27in QHD,Monitor,27in,Active,290,0.0
+A01,Dell,WD22TB4 Thunderbolt Dock,Accessory,Dock,Active,215,0.02
+A02,CalDigit,TS4 Thunderbolt Dock,Accessory,Dock,Active,300,0.0
+A03,Logitech,MX Keys S Keyboard,Accessory,Keyboard,Active,80,0.0
+A04,Logitech,MX Master 3S Mouse,Accessory,Mouse,Active,70,0.0
+A05,Apple,Magic Keyboard with Touch ID,Accessory,Keyboard,Active,115,0.0
+A06,Jabra,Evolve2 65 Headset,Accessory,Headset,Active,165,0.01
+A07,Poly,Voyager 4320 Headset,Accessory,Headset,Active,120,0.0
+A08,Generic,15in Laptop Backpack,Accessory,Bag,Active,28,0.0
+A09,Anker,100W USB-C Charger,Accessory,Power,Active,38,0.0

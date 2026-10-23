@@ -1,0 +1,4 @@
+category,target_margin,floor_margin,list_headroom_pct
+Laptop,0.12,0.08,0.03
+Monitor,0.18,0.12,0.04
+Accessory,0.32,0.22,0.05

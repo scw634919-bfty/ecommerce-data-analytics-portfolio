@@ -1,0 +1,84 @@
+gp_at_list_price  discount_impact  cost_drift_impact  fx_impact  actual_gp  actual_margin_pct
+----------------  ---------------  -----------------  ---------  ---------  -----------------
+4911097.0         -1010095.0       -167238.0          -127229.0  3606535.0  13.52            
+region  revenue_usd  margin_pct  target_pct  gap_pts  cost_drift_usd  fx_impact_usd
+------  -----------  ----------  ----------  -------  --------------  -------------
+IN      5126651.0    12.14       13.72       -1.59    -94849.0        -50488.0     
+UK      2330584.0    12.78       13.53       -0.76    -6024.0         -40731.0     
+US      9851879.0    13.32       13.77       -0.45    -34767.0        0.0          
+DE      7807689.0    14.36       13.93       0.43     -28378.0        -37691.0     
+CA      1557367.0    16.27       13.75       2.52     -3222.0         1682.0       
+rep  lines  below_floor  unapproved_below_floor  avg_discount_pct  margin_pct  risk_rank
+---  -----  -----------  ----------------------  ----------------  ----------  ---------
+R04  572    32           28                      4.98              12.31       1        
+R02  314    9            9                       2.79              13.93       2        
+R06  272    5            5                       2.88              14.58       3        
+R05  139    3            3                       2.45              13.96       4        
+R03  305    2            2                       1.76              14.85       5        
+R01  359    1            1                       1.79              15.64       6        
+sku  first_month_seen  avg_cost_increase_pct  units_affected  margin_lost_usd
+---  ----------------  ---------------------  --------------  ---------------
+L06  2026-04           5.9                    712             48145.0        
+L10  2026-04           5.9                    353             24244.0        
+region  month    margin_pct  mom_change_pts
+------  -------  ----------  --------------
+IN      2025-10  12.63                     
+IN      2025-11  12.54       -0.09         
+IN      2025-12  13.36       0.82          
+IN      2026-01  13.35       -0.01         
+IN      2026-02  12.36       -0.99         
+IN      2026-03  13.83       1.47          
+IN      2026-04  11.57       -2.26         
+IN      2026-05  11.36       -0.21         
+IN      2026-06  11.51       0.15          
+IN      2026-07  9.6         -1.91         
+IN      2026-08  12.2        2.6           
+IN      2026-09  11.22       -0.98         
+UK      2025-10  15.42                     
+UK      2025-11  13.11       -2.31         
+UK      2025-12  13.32       0.21          
+UK      2026-01  14.63       1.32          
+UK      2026-02  15.15       0.51          
+UK      2026-03  15.36       0.21          
+UK      2026-04  14.15       -1.21         
+UK      2026-06  11.0        -3.16         
+UK      2026-07  7.14        -3.86         
+UK      2026-08  11.83       4.7           
+UK      2026-09  10.71       -1.12         
+category   sku  model                                    units  revenue    margin_pct  abc  action               
+---------  ---  ---------------------------------------  -----  ---------  ----------  ---  ---------------------
+Accessory  A01  WD22TB4 Thunderbolt Dock                 1919   637395.0   33.3        A    Preferred            
+Accessory  A06  Evolve2 65 Headset                       1077   288632.0   33.5        A    Preferred            
+Accessory  A04  MX Master 3S Mouse                       1459   182455.0   33.1        A    Preferred            
+Accessory  A03  MX Keys S Keyboard                       1189   161228.0   33.3        A    Preferred            
+Accessory  A02  TS4 Thunderbolt Dock                     237    116820.0   33.5        A    Preferred            
+Accessory  A05  Magic Keyboard with Touch ID             599    114343.0   33.7        B    Keep                 
+Accessory  A09  100W USB-C Charger                       857    64881.0    32.8        B    Keep                 
+Accessory  A08  15in Laptop Backpack                     855    50222.0    34.3        C    Keep                 
+Accessory  A07  Voyager 4320 Headset                     91     18187.0    34.3        C    Consolidate          
+Laptop     L01  MacBook Air 13 M3 16GB/512GB             3131   4378202.0  12.0        A    Preferred            
+Laptop     L02  MacBook Pro 14 M3 Pro 18GB/512GB         1887   3939329.0  11.8        A    Preferred            
+Laptop     L08  ThinkPad X1 Carbon Gen 12 i7/32GB/1TB    1596   2733920.0  11.9        A    Preferred            
+Laptop     L06  XPS 13 9340 Ultra 7/16GB/512GB           1557   2076747.0  9.8         A    Below target: reprice
+Laptop     L07  ThinkPad T14 Gen 5 i5/16GB/512GB         1744   2049080.0  11.9        A    Preferred            
+Laptop     L05  Latitude 7450 i7/16GB/512GB              1054   1612949.0  11.6        A    Preferred            
+Laptop     L03  MacBook Pro 16 M3 Max 36GB/1TB           376    1286029.0  11.6        A    Preferred            
+Laptop     L10  EliteBook 840 G11 Ultra 5/16GB/512GB     929    1267663.0  9.6         B    Below target: reprice
+Laptop     L04  Latitude 5450 i5/16GB/512GB              1089   1248283.0  12.6        B    Keep                 
+Laptop     L09  ThinkPad E14 Gen 6 i5/16GB/256GB         883    767571.0   12.2        B    Keep                 
+Laptop     L12  Surface Laptop 6 Ultra 5/16GB/256GB      347    498495.0   11.7        B    Keep                 
+Laptop     L15  Latitude 5440 i5/16GB/512GB (prev. gen)  315    342640.0   10.7        C    Phase out            
+Laptop     L11  ProBook 450 G10 i5/16GB/256GB            267    247901.0   11.6        C    Consolidate          
+Laptop     L13  TravelMate P4 i5/16GB/512GB              68     72101.0    12.1        C    Consolidate          
+Laptop     L14  ExpertBook B5 i5/16GB/512GB              32     36129.0    13.4        C    Consolidate          
+Monitor    M02  U2724D 27in QHD                          1708   810262.0   18.2        A    Preferred            
+Monitor    M01  P2425H 24in FHD                          2179   559515.0   18.5        A    Preferred            
+Monitor    M03  27UP850-W 27in 4K                        1075   502523.0   18.5        A    Preferred            
+Monitor    M04  ThinkVision T27h-30 27in QHD             925    358783.0   17.9        A    Preferred            
+Monitor    M05  E24 G5 24in FHD                          902    235284.0   17.6        B    Keep                 
+Monitor    M06  ViewFinity S6 27in QHD                   38     16603.0    15.6        C    Consolidate          
+region  category   book_cost_per_unit  actual_cost_per_unit  extra_cost_usd
+------  ---------  ------------------  --------------------  --------------
+IN      Laptop     1421.74             1441.74               48200.0       
+IN      Monitor    343.99              363.99                24620.0       
+IN      Accessory  136.44              141.44                6950.0        

@@ -1,0 +1,6 @@
+region,currency,fx_book,duty_pct,fx_buffer_pct,freight_laptop,freight_monitor,freight_accessory
+US,USD,1.0,0.0,0.0,18,25,6
+UK,GBP,0.79,0.0,0.02,42,55,12
+DE,EUR,0.92,0.0,0.02,38,50,11
+CA,CAD,1.37,0.0,0.02,30,40,9
+IN,INR,83.5,0.11,0.02,55,70,15
