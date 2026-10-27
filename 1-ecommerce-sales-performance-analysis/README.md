@@ -1,7 +1,7 @@
 # Ecommerce Sales Analytics Dashboard
 
 [![View Notebook](https://img.shields.io/badge/View-Notebook-blue?logo=jupyter)](https://scw634919-bfty.github.io/ecommerce-data-analytics-portfolio/1-ecommerce-sales-performance-analysis/notebook/ecommerce_sales_performance_analysis.html)
-[![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_17799845497770/E-commerceSalesPerformanceDashboard)
+[![Tableau Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_redesign/E-commerceSalesPerformanceDashboard)
 
 ## Project Overview
 
@@ -23,13 +23,13 @@ Using Python for exploratory data analysis and Tableau for dashboard development
 
 ## Dashboard Preview
 
-[![Ecommerce Sales Performance Dashboard](images/ecommerce_dashboard.png)](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_17799845497770/E-commerceSalesPerformanceDashboard)
+[![Ecommerce Sales Performance Dashboard](images/ecommerce_dashboard.png)](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_redesign/E-commerceSalesPerformanceDashboard)
 
 ---
 
 ## Tableau Dashboard
 
-🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_17799845497770/E-commerceSalesPerformanceDashboard)
+🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/EcommerceSalesPerformanceDashboard_redesign/E-commerceSalesPerformanceDashboard)
 
 ---
 

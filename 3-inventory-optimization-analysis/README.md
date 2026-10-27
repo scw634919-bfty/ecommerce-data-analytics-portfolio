@@ -175,7 +175,7 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 
 ## Tableau Dashboard
 
-🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/Inventory_Optimization_Dashboard/InventoryOptimizationDashboard)
+🔗 [View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/Inventory_Optimization_Dashboard_redesign/InventoryOptimizationDashboard)
 
 **Dashboard Views:**
 - Monthly revenue trend (line chart)
