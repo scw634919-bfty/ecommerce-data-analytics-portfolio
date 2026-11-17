@@ -1,0 +1,77 @@
+keyword,category,priority
+candle,home decor,1
+holder,home decor,1
+lamp,home decor,1
+frame,home decor,1
+mirror,home decor,1
+vase,home decor,1
+clock,home decor,1
+heart,home decor,1
+flower,home decor,1
+light,home decor,1
+decor,home decor,1
+ornament,home decor,1
+door,home decor,1
+picture,home decor,1
+sign,home decor,1
+hanger,home decor,1
+shelf,home decor,1
+storage,home decor,1
+box,home decor,1
+drawer,home decor,1
+kitchen,kitchen,2
+tea,kitchen,2
+coffee,kitchen,2
+mug,kitchen,2
+cup,kitchen,2
+plate,kitchen,2
+bowl,kitchen,2
+glass,kitchen,2
+bottle,kitchen,2
+jar,kitchen,2
+tin,kitchen,2
+cutlery,kitchen,2
+spoon,kitchen,2
+fork,kitchen,2
+knife,kitchen,2
+tray,kitchen,2
+baking,kitchen,2
+pan,kitchen,2
+kettle,kitchen,2
+teapot,kitchen,2
+cake,kitchen,2
+bag,bags,3
+purse,bags,3
+tote,bags,3
+backpack,bags,3
+gift,gift/decorative,4
+present,gift/decorative,4
+ribbon,gift/decorative,4
+card,gift/decorative,4
+wrap,gift/decorative,4
+wrapping,gift/decorative,4
+party,gift/decorative,4
+bunting,gift/decorative,4
+decorative,gift/decorative,4
+christmas,seasonal,5
+xmas,seasonal,5
+santa,seasonal,5
+snow,seasonal,5
+tree,seasonal,5
+easter,seasonal,5
+halloween,seasonal,5
+valentine,seasonal,5
+seasonal,seasonal,5
+set,sets,6
+kit,sets,6
+pack,sets,6
+bundle,sets,6
+paper,stationery,7
+notebook,stationery,7
+note,stationery,7
+stationery,stationery,7
+pen,stationery,7
+pencil,stationery,7
+file,stationery,7
+folder,stationery,7
+sticker,stationery,7

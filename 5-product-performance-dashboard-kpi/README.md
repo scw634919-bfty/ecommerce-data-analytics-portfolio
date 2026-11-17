@@ -62,7 +62,8 @@ sold - Unit price - Customer IDs - Order timestamps
 5-product-performance-dashboard-kpi/
 │
 ├── data/
-│   └── README.md  (download instructions)
+│   ├── README.md  (download instructions)
+│   └── category_mapping.csv  (keyword → category rules)
 │
 ├── notebook/
 │   └── product_performance_dashboard_kpi.ipynb
@@ -123,6 +124,12 @@ The following preprocessing steps were applied:
 
 Since the dataset did not contain product categories, rule-based
 categories were created using product keywords.
+
+The keyword rules live in a mapping file, `data/category_mapping.csv`
+(`keyword`, `category`, `priority`; the same file as Project 3), instead of
+hardcoded `if/elif` statements. Categories can be reviewed or updated in
+Excel without touching the code, and `priority` decides which category wins
+when a product name matches more than one (lower number wins).
 
 Example:
 

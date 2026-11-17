@@ -71,6 +71,8 @@ Built a keyword-based categorization system to group products into:
 - Sets
 - Other
 
+The keyword rules live in a mapping file, `data/category_mapping.csv` (`keyword`, `category`, `priority`), instead of hardcoded `if/elif` statements. Business users can review or update categories in Excel without touching the code, and `priority` makes the tie-break explicit when a product name matches more than one category (for example, "CHRISTMAS DECOUPAGE CANDLE" → home decor, because home decor has priority 1 and seasonal has priority 5). In production, this would be replaced by a SKU-level product master table.
+
 This step improves business interpretability and category-level reporting.
 
 ### 3. Sales Trend Analysis
@@ -146,7 +148,8 @@ By encoding these rules, ~3,900 SKUs are triaged into actionable groups without 
 3-inventory-optimization-analysis/
 │
 ├── data/
-│   └── README.md  (download instructions)
+│   ├── README.md  (download instructions)
+│   └── category_mapping.csv  (keyword → category rules)
 │
 ├── notebook/
 │   └── inventory_optimization_analysis.ipynb
